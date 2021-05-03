@@ -10,47 +10,17 @@
 .dockerignore
 
 # Source code control files
-.git/
-.gitignore
+#!include:.gitignore
 .hgignore
 .hg/
-
-# Python
-*.py[cod]
-__pycache__/
-/setup.cfg
 
 # README/text files
 LICENSE
 *.md
 
-# Mac
-.DS_Store
 
-# Installer logs
-pip-log.txt
-
-# Tests/results
-.nox/
-.pytest_cache/
+# Tests/results (not in .gitignore)
 noxfile.py
 test_translate.py
-.coverage
-coverage.xml
-*sponge_log.xml
-system_tests/local_test_setup
 pylintrc
 pylintrc.test
-
-# IDEs/editors
-*.sw[op]
-*~
-.vscode
-.idea
-
-# Built documentation
-docs/_build
-docs.metadata
-
-# Virtual environment
-env/

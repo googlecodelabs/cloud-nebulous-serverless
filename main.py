@@ -13,10 +13,11 @@
 # limitations under the License.
 
 from flask import Flask, render_template, request
+import google.auth
 from google.cloud import translate
-from settings import PROJECT_ID
 
 app = Flask(__name__)
+_, PROJECT_ID = google.auth.default()
 TRANSLATE = translate.TranslationServiceClient()
 PARENT = 'projects/{}'.format(PROJECT_ID)
 SOURCE, TARGET = ('en', 'English'), ('es', 'Spanish')

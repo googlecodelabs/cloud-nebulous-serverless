@@ -40,11 +40,6 @@ Why just locally? For simplicity, this sample app uses [default service accounts
 However, while we suggest you "delete" `credentials.json` and not use it when deploying to the cloud ("finding credentials automatically"), you can disregard that advice and opt to use that service account key-pair ("passing credentials manually") if desired as long as you point to those credentials. Read more about these options in the [documentation](https://cloud.google.com/docs/authentication/production).
 
 
-### Cloud project ID
-
-The `settings.py` file is to avoid publicly-exposing your `PROJECT_ID` if you're sharing or presenting the main application file `main.py`. Set your Cloud project ID to that variable. You can find it from the Cloud Console <https://console.cloud.google.com> on your "Project info" dashboard card, or click on the "snowman" triple dots to the left of your avatar in the upper-right of the Cloud Console. Do *not* use the project name or the project number, just the project ID.
-
-
 ### Cost
 
 While many Google APIs can be used without fees, use of Google Cloud (Platform) products &amp; APIs is _not_ free. Certain Google Cloud Platform (GCP) products do offer an ["Always Free" tier](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits) for which you have to exceed in order to be billed. For our purposes, while the Translation API does not explicitly list a free quota on that page, [its pricing information page](https://cloud.google.com/translate/pricing) indicates a certain number of [translated characters](https://cloud.google.com/translate/pricing#charged-characters) as a free monthly quota applied as a credit, so long as you stay within that limit, you should not incur any additional charges. When enabling any GCP services, you may be asked for an active billing account which requires a financial instrument such as a credit card. Reference all this pricing information before doing so.
@@ -56,7 +51,7 @@ Furthermore, deploying to Google Cloud serverless compute platforms incur [minor
 
 As mentioned above, local "deployments" use the Flask development server while the [`gcloud` CLI](https://cloud.google.com/sdk/gcloud) (command-line interface) is used when deploying to the cloud. It is part of the [Cloud SDK](https://cloud.google.com/sdk) which you should [install](https://cloud.google.com/sdk/docs/quickstart). New users should also reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet).
 
-Below are the required settings and instructions to deploy this app for all available configurations. Note the application files `main.py` and `settings.py` are always required. The "**TL:DR;**" section at the top of each deployment type summarizes the key files in each configuration while the table beneath spells it out the details. The `noxfile.py` and `test_translate.py` files are for testing only thus not listed &mdash; see the [Testing section](#testing) at the very bottom. None of the `.*ignore` administrative files are included in deployments either.
+Below are the required settings and instructions to deploy this app for all available configurations. Note the application file `main.py` is always required (should be obvious). The "**TL:DR;**" section at the top of each deployment type summarizes the key files in each configuration while the table beneath spells it out the details. The `noxfile.py` and `test_translate.py` files are for testing only thus not listed &mdash; see the [Testing section](#testing) at the very bottom. None of the `.*ignore` administrative files are included in deployments either.
 
 
 ## **Local Flask server (Python 2)**
@@ -65,12 +60,11 @@ Below are the required settings and instructions to deploy this app for all avai
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**create** (if necessary) **and use** per instructions below
 `app.yaml`|_unused_ (delete or leave as-is)
 `appengine_config.py`|_unused_ (delete or leave as-is)
-`requirements.txt`|_unused_ (delete or leave as-is; packages should be installed locally however [see below])
+`requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
 `lib`|_unused_ (delete or leave as-is if it exists)
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
@@ -86,12 +80,11 @@ File | Description
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**create** (if necessary) **and use** per instructions below
 `app.yaml`|_unused_ (delete or leave as-is)
 `appengine_config.py`|_unused_ (delete or leave as-is)
-`requirements.txt`|_unused_ (delete or leave as-is; packages should be installed locally however [see below])
+`requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
 `lib`|_unused_ (delete or leave as-is if it exists)
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
@@ -108,12 +101,11 @@ File | Description
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists
 `app.yaml`|**use as-is** from repo (ensure `#runtime:python38` commented out)
 `appengine_config.py`|**use as-is** from repo
-`requirements.txt`|**use as-is** from repo (used to populate `lib` but _unused_ thereafter)
+`requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
 `lib`|**create folder** per instructions below
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
@@ -128,10 +120,9 @@ File | Description
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists
-`app.yaml`|**uncomment** `runtime:python38` and **delete all other lines** (can also use 3.7 or 3.9)
+`app.yaml`|**uncomment** `runtime:python38` (can also use 3.7 or 3.9) and **delete all other lines**
 `appengine_config.py`|**delete** (or rename) this file (not used with Python 3 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Python 3 App Engine)
@@ -147,7 +138,6 @@ File | Description
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists
 `app.yaml`|**delete** (or rename) this file (not used with Cloud Functions)
@@ -168,7 +158,6 @@ File | Description
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists
 `app.yaml`|**delete** (or rename) this file (not used with Cloud Run)
@@ -191,7 +180,6 @@ File | Description
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists
 `app.yaml`|**delete** (or rename) this file (not used with Cloud Run)
@@ -212,7 +200,6 @@ File | Description
 
 File | Description
 --- | ---
-`settings.py`|**ensure** `PROJECT_ID` set correctly
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists
 `app.yaml`|**delete** (or rename) this file (not used with Cloud Run)
@@ -293,7 +280,7 @@ File | Description
 
 ## Testing
 
-Testing is driven by [`nox`](http://nox.thea.codes) which uses `pytest`, installing it in virtual environments, along with application dependencies, `flask` and `google-cloud-translate`, and finally, `blinker`, a signaling framework integrated into Flask. To run the pair of tests (testing `GET` and `POST` requests), install `nox` (with the expected `pip install -U nox`) and run it from the command line in the application folder and ensuring the `noxfile.py` file is present. Expected output:
+Testing is driven by [`nox`](http://nox.thea.codes) which uses [`pytest`](https://pytest.org/) for testing and [`flake8`](https://flake8.pycqa.org) for linting, installing both in virtual environments along with application dependencies, `flask` and `google-cloud-translate`, and finally, `blinker`, a signaling framework integrated into Flask. To run the lint and unit tests (testing `GET` and `POST` requests), install `nox` (with the expected `pip install -U nox`) and run it from the command line in the application folder and ensuring the `noxfile.py` file is present. Expected output:
 ```
 $ nox
 nox > Running session tests-2.7
