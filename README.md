@@ -14,12 +14,14 @@ This is the code repo for a set of codelab tutorials highlighting a single "nebu
 1. Google Cloud Run (Python 3 via Docker)
 1. Google Cloud Run (Python 3 via Cloud Buildpacks)
 
-Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both without modification nor use of compatibility libraries. However, those familiar with the differences in App Engine across both runtimes have internalized a greater significance.
+Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both without modification nor use of compatibility libraries. However, those familiar with the differences in App Engine across both runtimes have internalized greater challenges.
 
 
-### App
+### Inspiration and implementation
 
-This app shows developers how to use a Google Cloud service (API) from one of the serverless compute platforms, specifically the [Cloud Translation API](https://cloud.google.com/translate). It's the API for [Google Translate](https://translate.google.com) and one of Google Cloud's [AI/ML building block" APIs](https://cloud.google.com/products/ai/building-blocks) backed by pre-trained models so you don't have to build your own, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a simplistic English-to-Spanish mini-"Google Translate" web service.
+This code sample was inspired by a [suboptimal experience](https://www.mail-archive.com/google-appengine@googlegroups.com/msg94549.html) a user faced when trying to create a simple App Engine app using a Cloud API &mdash; it really shouldn't be *that* hard, so I wanted to create a simple example without all that complexity. It was also inspired by a [colleague's blog post](https://dev.to/googlecloud/portable-code-migrating-across-google-cloud-s-serverless-platforms-2ifk) showing a similar Node.js example "drifting" between Google Cloud serverless platforms.
+
+This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate) for an app hosted on our serverless compute platforms. It's the API for [Google Translate](https://translate.google.com) and one of Google Cloud's [AI/ML building block" APIs](https://cloud.google.com/products/ai/building-blocks) backed by pre-trained models so you don't have to build your own, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini-"My Google Translate" MVP (minimally-viable product) web service.
 
 
 ### Services
@@ -83,15 +85,15 @@ File | Description
 `main.py`|**use as-is** from repo
 `credentials.json`|**create** (if necessary) **and use** per instructions below
 `app.yaml`|_unused_ (delete or leave as-is)
-`appengine_config.py`|_unused_ (delete or leave as-is)
+`appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
 `lib`|_unused_ (delete or leave as-is if it exists)
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
 
-- **Create service account key**, download key file as `credentials.json` in working directory, and set `GOOGLE_APPLICATION_CREDENTIALS` environment variable pointing to it (more [above](#service-account-credentials-local-only) and [here](https://cloud.google.com/docs/authentication/production#manually))
-- **Run** `pip install -U pip -r requirements.txt` to install/update packages locally (or `pip2`)
-- **Run** `python main.py` to run on local Flask server (or `python2`)
+1. **Create service account key**, download key file as `credentials.json` in working directory, and set `GOOGLE_APPLICATION_CREDENTIALS` environment variable pointing to it (more [above](#service-account-credentials-local-only) and [here](https://cloud.google.com/docs/authentication/production#manually))
+1. **Run** `pip install -U pip -r requirements.txt` to install/update packages locally (or `pip2`)
+1. **Run** `python main.py` to run on local Flask server (or `python2`)
 
 
 ## **Local Flask server (Python 3)**
@@ -103,16 +105,16 @@ File | Description
 `main.py`|**use as-is** from repo
 `credentials.json`|**create** (if necessary) **and use** per instructions below
 `app.yaml`|_unused_ (delete or leave as-is)
-`appengine_config.py`|_unused_ (delete or leave as-is)
+`appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
 `lib`|_unused_ (delete or leave as-is if it exists)
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
 
-- **Reuse** existing `credentials.json` or create new one per Python 2 instructions above
-- **Run** `pip install -U pip -r requirements.txt` to install/update packages locally (or `pip3`)
+1. **Reuse** existing `credentials.json` or create new one per Python 2 instructions above
+1. **Run** `pip install -U pip -r requirements.txt` to install/update packages locally (or `pip3`)
     - While you can reuse `credentials.json` from Python 2, you must still install the packages for Python 3.
-- **Run** `python main.py` to run on local Flask server (or `python3`)
+1. **Run** `python main.py` to run on local Flask server (or `python3`)
 
 
 ## **App Engine (Python 2)**
@@ -122,7 +124,7 @@ File | Description
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists
+`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|**use as-is** from repo (ensure `#runtime:python38` commented out)
 `appengine_config.py`|**use as-is** from repo
 `requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
@@ -130,8 +132,9 @@ File | Description
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
 
-- **Run** `pip install -t lib -r requirements.txt` to populate `lib` folder (or `pip2`)
-- **Run** `gcloud app deploy` to deploy to Python 2 App Engine
+1. **Delete** `credentials.json` (see above)
+1. **Run** `pip install -t lib -r requirements.txt` to populate `lib` folder (or `pip2`)
+1. **Run** `gcloud app deploy` to deploy to Python 2 App Engine
 
 
 ## **App Engine (Python 3)**
@@ -141,15 +144,16 @@ File | Description
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists
+`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|**uncomment** `runtime:python38` (can also use 3.7 or 3.9) and **delete all other lines**
-`appengine_config.py`|**delete** (or rename) this file (not used with Python 3 App Engine)
+`appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Python 3 App Engine)
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
 
-- **Run** `gcloud app deploy` to deploy to Python 3 App Engine
+1. **Edit** `app.yaml` and **delete** `credentials.json` and `lib` (see above)
+1. **Run** `gcloud app deploy` to deploy to Python 3 App Engine
 
 
 ## **Cloud Functions (Python 3)**
@@ -159,17 +163,18 @@ File | Description
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists
-`app.yaml`|**delete** (or rename) this file (not used with Cloud Functions)
-`appengine_config.py`|**delete** (or rename) this file (not used with Cloud Functions)
+`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
+`app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
+`appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Functions)
 `Dockerfile`|_unused_ (delete or leave as-is)
 `Procfile`|_unused_ (delete or leave as-is)
 
-- **Run** `gcloud functions deploy translate --runtime python38 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (can also use 3.7 or 3.9)
+1. **Delete** `credentials.json` and `lib` (see above)
+1. **Run** `gcloud functions deploy translate --runtime python38 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (can also use 3.7 or 3.9)
     - That command creates &amp; deploys a new HTTP-triggered Cloud Function (name must match what's in `main.py`)
-- There is no support for Python 2 with Cloud Functions
+1. There is no support for Python 2 with Cloud Functions
 
 
 ## **Cloud Run (Python 2 via Docker)**
@@ -179,23 +184,23 @@ File | Description
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists
-`app.yaml`|**delete** (or rename) this file (not used with Cloud Run)
-`appengine_config.py`|**delete** (or rename) this file (not used with Cloud Run)
+`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
+`app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
+`appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Run)
 `Dockerfile`|**use as-is** from repo (ensure `#FROM python:3-slim` commented out)
 `Procfile`|_unused_ (delete or leave as-is)
 
-- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. **Delete** `credentials.json` and `lib` (see above)
+1. **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and finally `docker run` to deploy the service, all in one convenient command.
-- By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
+1. You can also use this shortcut to deploy to Cloud Run:
+    [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
-    1. **Uncomment** the `ENTRYPOINT` entry with `gunicorn` replacing the default one in `Dockerfile`
+    1. **Uncomment** the `ENTRYPOINT` entry for `gunicorn` replacing the default entry in `Dockerfile`
     1. Re-use the same deploy command
-- You can also use this shortcut to deploy to Cloud Run:
-
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
 
 
 ## **Cloud Run (Python 3 via Docker)**
@@ -205,44 +210,44 @@ File | Description
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists
-`app.yaml`|**delete** (or rename) this file (not used with Cloud Run)
-`appengine_config.py`|**delete** (or rename) this file (not used with Cloud Run)
+`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
+`app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
+`appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Run)
 `Dockerfile`|**replace** `FROM python:2-slim` with `FROM python:3-slim` (commented out) but **keep all other lines**
 `Procfile`|_unused_ (delete or leave as-is)
 
-- Same as Cloud Run Python 2 via Docker except `Dockerfile`
-- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
-- The shortcut "button" above can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
-- By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
+1. **Edit** `Dockerfile` and **delete** `credentials.json` and `lib` (see above)
+1. **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. The shortcut "button" above can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
+1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
-    1. **Uncomment** the `ENTRYPOINT` entry with `gunicorn` replacing the default one in `Dockerfile`
+    1. **Uncomment** the `ENTRYPOINT` entry for `gunicorn` replacing the default entry in `Dockerfile`
     1. Re-use the same deploy command
 
 
 ## **Cloud Run (Python 3 via Cloud Buildpacks)**
 
-- **TL;DR:** app files plus `requirements.txt` and `Procfile`
+- **TL;DR:** app files plus `requirements.txt` and [`Procfile`](https://devcenter.heroku.com/articles/procfile)
 
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists
-`app.yaml`|**delete** (or rename) this file (not used with Cloud Run)
-`appengine_config.py`|**delete** (or rename) this file (not used with Cloud Run)
+`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
+`app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
+`appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Run)
 `Dockerfile`|**delete** (or rename) this file (or else identical to above deployment)
 `Procfile`|**use as-is** from repo
 
-- Same as Cloud Run Python 2/3 via Docker except _no_ `Dockerfile` but _with_ [`Procfile`](https://devcenter.heroku.com/articles/procfile)
-- There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
-- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
-- By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
+1. **Delete** `Dockerfile`, `credentials.json`, and `lib` (see above)
+1. There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
+1. **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
-    1. **Uncomment** the `web:` entry with `gunicorn` replacing the default one in `Procfile`
+    1. **Uncomment** the `web:` entry for `gunicorn` replacing the default entry in `Procfile`
     1. Re-use the same deploy command
 
 
