@@ -47,6 +47,20 @@ While many Google APIs can be used without fees, use of Google Cloud (Platform) 
 Furthermore, deploying to Google Cloud serverless compute platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is than sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing); storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However, you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
 
 
+### Enable Cloud services used
+
+Once you have a billing account, you can enable the services/APIs for each product used. Go to the Cloud console pages for each respective Cloud product used and enable the service:
+
+1. [App Engine](https://console.cloud.google.com/appengine)
+1. [Cloud Functions](https://console.cloud.google.com/functions)
+1. [Cloud Run](https://console.cloud.google.com/run)
+1. [Cloud Translation](https://console.cloud.google.com/apis/api/translate.googleapis.com)
+
+Alternatively, you can do it all with a single command-line request using the `gcloud` command available from the [Cloud SDK](https://cloud.google.com/sdk):
+
+- `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
+
+
 ### Deployments
 
 As mentioned above, local "deployments" use the Flask development server while the [`gcloud` CLI](https://cloud.google.com/sdk/gcloud) (command-line interface) is used when deploying to the cloud. It is part of the [Cloud SDK](https://cloud.google.com/sdk) which you should [install](https://cloud.google.com/sdk/docs/quickstart). New users should also reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet). Below are the required settings and instructions to deploy this app for all available configurations.
@@ -173,7 +187,7 @@ File | Description
 `Dockerfile`|**use as-is** from repo (ensure `#FROM python:3-slim` commented out)
 `Procfile`|_unused_ (delete or leave as-is)
 
-- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run
+- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and finally `docker run` to deploy the service, all in one convenient command.
 - By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
@@ -200,13 +214,10 @@ File | Description
 `Procfile`|_unused_ (delete or leave as-is)
 
 - Same as Cloud Run Python 2 via Docker except `Dockerfile`
-- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run
-- The shortcut can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
+- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+- The shortcut "button" above can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
 - By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
-    1. **Uncomment** the `ENTRYPOINT` entry with `gunicorn` replacing the default one in `Dockerfile`
-    1. Re-use the same deploy command
-    1. **Uncomment** `gunicorn` from `requirements.txt`
     1. **Uncomment** the `ENTRYPOINT` entry with `gunicorn` replacing the default one in `Dockerfile`
     1. Re-use the same deploy command
 
@@ -228,7 +239,7 @@ File | Description
 
 - Same as Cloud Run Python 2/3 via Docker except _no_ `Dockerfile` but _with_ [`Procfile`](https://devcenter.heroku.com/articles/procfile)
 - There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
-- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run
+- **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
 - By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
     1. **Uncomment** the `web:` entry with `gunicorn` replacing the default one in `Procfile`
