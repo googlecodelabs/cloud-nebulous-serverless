@@ -49,9 +49,15 @@ Furthermore, deploying to Google Cloud serverless compute platforms incur [minor
 
 ### Deployments
 
-As mentioned above, local "deployments" use the Flask development server while the [`gcloud` CLI](https://cloud.google.com/sdk/gcloud) (command-line interface) is used when deploying to the cloud. It is part of the [Cloud SDK](https://cloud.google.com/sdk) which you should [install](https://cloud.google.com/sdk/docs/quickstart). New users should also reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet).
+As mentioned above, local "deployments" use the Flask development server while the [`gcloud` CLI](https://cloud.google.com/sdk/gcloud) (command-line interface) is used when deploying to the cloud. It is part of the [Cloud SDK](https://cloud.google.com/sdk) which you should [install](https://cloud.google.com/sdk/docs/quickstart). New users should also reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet). Below are the required settings and instructions to deploy this app for all available configurations.
 
-Below are the required settings and instructions to deploy this app for all available configurations. Note the application file `main.py` is always required (should be obvious). The "**TL:DR;**" section at the top of each deployment type summarizes the key files in each configuration while the table beneath spells it out the details. The `noxfile.py` and `test_translate.py` files are for testing only thus not listed &mdash; see the [Testing section](#testing) at the very bottom. None of the `.*ignore` administrative files are included in deployments either.
+
+#### NOTES
+
+- The application file `main.py` is always required (should be obvious).
+- The "**TL:DR;**" section at the top of each deployment type summarizes the key files in each configuration while the table beneath spells it out the details.
+- The `noxfile.py` and `test_translate.py` files are for testing only thus not listed &mdash; see the [Testing section](#testing) at the very bottom.
+- The `.*ignore` files are administrative and not described as part of the deployments.
 
 
 ## **Local Flask server (Python 2)**
@@ -169,6 +175,10 @@ File | Description
 
 - **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and finally `docker run` to deploy the service, all in one convenient command.
+- By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
+    1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
+    1. **Uncomment** the `ENTRYPOINT` entry with `gunicorn` replacing the default one in `Dockerfile`
+    1. Re-use the same deploy command
 - You can also use this shortcut to deploy to Cloud Run:
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
@@ -192,6 +202,13 @@ File | Description
 - Same as Cloud Run Python 2 via Docker except `Dockerfile`
 - **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run
 - The shortcut can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
+- By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
+    1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
+    1. **Uncomment** the `ENTRYPOINT` entry with `gunicorn` replacing the default one in `Dockerfile`
+    1. Re-use the same deploy command
+    1. **Uncomment** `gunicorn` from `requirements.txt`
+    1. **Uncomment** the `ENTRYPOINT` entry with `gunicorn` replacing the default one in `Dockerfile`
+    1. Re-use the same deploy command
 
 
 ## **Cloud Run (Python 3 via Cloud Buildpacks)**
@@ -206,12 +223,16 @@ File | Description
 `appengine_config.py`|**delete** (or rename) this file (not used with Cloud Run)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Run)
-`Dockerfile`|**delete** (or rename) this file (containers/Docker/`Dockerfile` knowledge unnecessary)
+`Dockerfile`|**delete** (or rename) this file (or else identical to above deployment)
 `Procfile`|**use as-is** from repo
 
 - Same as Cloud Run Python 2/3 via Docker except _no_ `Dockerfile` but _with_ [`Procfile`](https://devcenter.heroku.com/articles/procfile)
 - There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
 - **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run
+- By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn` with these commands:
+    1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
+    1. **Uncomment** the `web:` entry with `gunicorn` replacing the default one in `Procfile`
+    1. Re-use the same deploy command
 
 
 ## References

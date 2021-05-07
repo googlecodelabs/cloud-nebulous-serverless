@@ -36,20 +36,21 @@ def translate(gcf_request=None):
     # reset all variables (GET)
     text = translated = None
 
-    # if there is data to process (POST)
+    # form submission and if there is data to process (POST)
     if local_request.method == 'POST':
-        text = local_request.form['text']
-        data = {
-            'contents': [text],
-            'parent': PARENT,
-            'target_language_code': TARGET[0],
-        }
-        # handle older call for backwards-compatibility
-        try:
-            rsp = TRANSLATE.translate_text(request=data)
-        except TypeError:
-            rsp = TRANSLATE.translate_text(**data)
-        translated = rsp.translations[0].translated_text
+        text = local_request.form['text'].strip()
+        if text:
+            data = {
+                'contents': [text],
+                'parent': PARENT,
+                'target_language_code': TARGET[0],
+            }
+            # handle older call for backwards-compatibility
+            try:
+                rsp = TRANSLATE.translate_text(request=data)
+            except TypeError:
+                rsp = TRANSLATE.translate_text(**data)
+            translated = rsp.translations[0].translated_text
 
     # create context & render template
     context = {
