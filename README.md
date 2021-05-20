@@ -3,7 +3,7 @@
 
 ## Description
 
-This is the code repo for a set of codelab tutorials highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as Google Cloud serverless compute platforms go. With minor configuration tweaks, this app can be deployed eight different ways:
+This is the code repo for a set of codelab tutorials (_coming soon_) highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless) compute platforms go. With minor configuration tweaks, this app can be deployed eight different ways:
 
 1. Local Flask server (Python 2)
 1. Local Flask server (Python 3)
@@ -14,23 +14,37 @@ This is the code repo for a set of codelab tutorials highlighting a single "nebu
 1. Google Cloud Run (Python 3 via Docker)
 1. Google Cloud Run (Python 3 via Cloud Buildpacks)
 
-Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both without modification nor use of compatibility libraries. However, those familiar with the differences in App Engine across both runtimes have internalized greater challenges.
+Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification nor use of compatibility libraries. However, there are significant differences between both App Engine runtimes, beyond just language differences. (For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x, and Cloud Functions does not support Python 2 at all.)
 
 
 ### Inspiration and implementation
 
-This code sample was inspired by a [suboptimal experience](https://www.mail-archive.com/google-appengine@googlegroups.com/msg94549.html) a user faced when trying to create a simple App Engine app using a Cloud API &mdash; it really shouldn't be *that* hard, so I wanted to create a simple example without all that complexity. It was also inspired by a [colleague's blog post](https://dev.to/googlecloud/portable-code-migrating-across-google-cloud-s-serverless-platforms-2ifk) showing a similar Node.js example "drifting" between Google Cloud serverless platforms.
+This code sample was inspired by a [suboptimal experience](https://www.mail-archive.com/google-appengine@googlegroups.com/msg94549.html) a user faced when trying to create a simple App Engine app using a Cloud API. It was also inspired by a [colleague's blog post](https://dev.to/googlecloud/portable-code-migrating-across-google-cloud-s-serverless-platforms-2ifk) showing a similar Node.js example "drifting" between GCP serverless platforms.
 
-This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate) for an app hosted on our serverless compute platforms. It's the API for [Google Translate](https://translate.google.com) and one of Google Cloud's [AI/ML building block" APIs](https://cloud.google.com/products/ai/building-blocks) backed by pre-trained models so you don't have to build your own, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini-"My Google Translate" MVP (minimally-viable product) web service.
+This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate), the API for [Google Translate](https://translate.google.com), and one of GCP's [AI/ML "building block" APIs](https://cloud.google.com/products/ai/building-blocks). Such APIs are backed by pre-trained machine learning models, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini-"My Google Translate" MVP (minimally-viable product) web service.
+
+
+### Hosting options
+
+Aside from local deployment, this app is deployable to these serverless compute platforms:
+
+- [Google App Engine](https://cloud.google.com/appengine) (Standard)
+    - Standard stack-based application source code deployments ("app-hosting in the cloud")
+- [Google Cloud Functions](https://cloud.google.com/functions)
+    - Instead of an entire app, this is for "FaaS" cloud-based functions or microservices
+- [Google Cloud Run](https://cloud.google.com/run)
+    - Fully-managed serverless "container-hosting in the cloud or CaaS" service
+
+The purpose of this app is to show users how to deploy the same app to each platform and give developers hands-on experience with each. It also shows users how similar the platforms are to each other that one can "shift" between then typically with just minor configuration changes. A fourth product, [App Engine Flexible](https://cloud.google.com/appengine/docs/flexible), which sits somewhere between App Engine Standard and Cloud Run, is out-of-scope for this sample app.
 
 
 ### Services
 
-The app uses the [Flask](https://flask.palletsprojects.com) micro web framework. When deploying locally, the [Flask development server](https://flask.palletsprojects.com/en/master/server) &mdash; also see [its docs](https://flask.palletsprojects.com/server) &mdash; is used. The app can also be configured for deployment to one of a pair of [Google Cloud serverless](https://cloud.google.com/serverless) application-hosting platforms, [App Engine](https://cloud.google.com/appengine) (Standard) or [Cloud Run](https://cloud.google.com/run). Since this "app" only has a single purpose/function, it is also reasonable to deploy it to [Cloud Functions](https://cloud.google.com/functions).
+The app uses the [Flask](https://flask.palletsprojects.com) micro web framework. When deploying locally, the [Flask development server](https://flask.palletsprojects.com/en/master/server) &mdash; also see [its docs](https://flask.palletsprojects.com/server) &mdash; is used. As an application, you're likely to deploy to either App Engine or Cloud Run, depending on whether your app is containerized. Since this "app" only has a single purpose/function, it is also reasonable to deploy it to Cloud Functions.
 
-App Engine is for users who wish to deploy a traditional web stack-based (LAMP, MEAN, etc.) application direct from source without knowledge of containers, Docker, nor `Dockerfile`s. Cloud Run is similar but for applications that are explicitly containerized. You can deploy pre-existing containers or build-and-deploy direct from source as well, but without language, library, or binary restrictions. Cloud Functions is for deploying simple functions or microservices like this and automatically sends Flask request objects to the deployed function (see compatibility line in `main.py`.)
+App Engine is for users who wish to deploy a traditional web stack (LAMP, MEAN, etc.) application direct from source without knowledge of containers, Docker, nor `Dockerfile`s. Cloud Run is similar but for applications that are explicitly containerized, freeing you from language, library, or binary restrictions. Cloud Functions is for deploying simple microservices like ours, and its Python runtime sends Flask request objects directly to deployed functions.
 
-When running on App Engine or Cloud Functions, this sample app uses the default web server that comes with those services (`gunicorn`). For Cloud Run, developers must start their own web server; this sample app again chooses Flask's development server (but can be configured to your server of choice).
+When running on App Engine or Cloud Functions, this sample app uses the default web server that comes with those services (`gunicorn`). For Cloud Run, developers must start their own web server; this sample app again chooses Flask's development server (but can be configured to your server of choice; `gunicorn` can be enabled if uncommented in the configuration.
 
 
 ### Service account credentials ("local-only")
@@ -44,9 +58,9 @@ However, while we suggest you "delete" `credentials.json` and not use it when de
 
 ### Cost
 
-While many Google APIs can be used without fees, use of Google Cloud (Platform) products &amp; APIs is _not_ free. Certain Google Cloud Platform (GCP) products do offer an ["Always Free" tier](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits) for which you have to exceed in order to be billed. For our purposes, while the Translation API does not explicitly list a free quota on that page, [its pricing information page](https://cloud.google.com/translate/pricing) indicates a certain number of [translated characters](https://cloud.google.com/translate/pricing#charged-characters) as a free monthly quota applied as a credit, so long as you stay within that limit, you should not incur any additional charges. When enabling any GCP services, you may be asked for an active billing account which requires a financial instrument such as a credit card. Reference all this pricing information before doing so.
+While many Google APIs can be used without fees, use of GCP products &amp; APIs is _not_ free. Certain products do offer an ["Always Free" tier](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits) which you have to exceed in order to be billed. For our purposes, while the Translation API does not explicitly list a free quota on that page, [its pricing information page](https://cloud.google.com/translate/pricing) indicates a certain number of [translated characters](https://cloud.google.com/translate/pricing#charged-characters) as a free monthly quota applied as a credit, so long as you stay within that limit, you should not incur any additional charges. When enabling services, you may be asked for an active billing account which requires a financial instrument such as a credit card. Reference relevant pricing information before doing so.
 
-Furthermore, deploying to Google Cloud serverless compute platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is than sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing); storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However, you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
+Furthermore, deploying to GCP serverless platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is than sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing); storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
 
 
 ### Enable Cloud services used
@@ -58,15 +72,14 @@ Once you have a billing account, you can enable the services/APIs for each produ
 1. [Cloud Run](https://console.cloud.google.com/run)
 1. [Cloud Translation](https://console.cloud.google.com/apis/api/translate.googleapis.com)
 
-Alternatively, you can do it all with a single command-line request using the `gcloud` command available from the [Cloud SDK](https://cloud.google.com/sdk):
+Alternatively, you can do it all with a single command-line request using the [`gcloud` CLI (command-line interface)](https://cloud.google.com/sdk/gcloud) available from the [Cloud SDK](https://cloud.google.com/sdk): `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
 
-- `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
+Also see the [Cloud SDK install instructions](https://cloud.google.com/sdk/docs/quickstart), and new users should reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet). Below are the required settings and instructions to deploy this app for all available configurations.
 
 
 ### Deployments
 
-As mentioned above, local "deployments" use the Flask development server while the [`gcloud` CLI](https://cloud.google.com/sdk/gcloud) (command-line interface) is used when deploying to the cloud. It is part of the [Cloud SDK](https://cloud.google.com/sdk) which you should [install](https://cloud.google.com/sdk/docs/quickstart). New users should also reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet). Below are the required settings and instructions to deploy this app for all available configurations.
-
+Below are the instructions and requisite files to deploy this app all 8 different ways.
 
 #### NOTES
 
@@ -172,7 +185,7 @@ File | Description
 `Procfile`|_unused_ (delete or leave as-is)
 
 1. **Delete** `credentials.json` and `lib` (see above)
-1. **Run** `gcloud functions deploy translate --runtime python38 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (can also use 3.7 or 3.9)
+1. **Run** `gcloud functions deploy translate --runtime python37 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (can also use 3.8 or 3.9)
     - That command creates &amp; deploys a new HTTP-triggered Cloud Function (name must match what's in `main.py`)
 1. There is no support for Python 2 with Cloud Functions
 
