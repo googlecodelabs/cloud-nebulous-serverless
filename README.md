@@ -3,10 +3,10 @@
 
 ## Description
 
-This is the code repo for a set of codelab tutorials (_coming soon_) highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless) compute platforms go. With minor configuration tweaks, this app can be deployed eight different ways:
+This is the code repo for a set of codelab tutorials (_coming soon_) highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless) compute platforms go. With minor configuration tweaks, this app can be deployed (at least) eight different ways:
 
-1. Local Flask server (Python 2)
-1. Local Flask server (Python 3)
+1. Local (or hosted) Flask server (Python 2)
+1. Local (or hosted) Flask server (Python 3)
 1. Google App Engine (Python 2)
 1. Google App Engine (Python 3)
 1. Google Cloud Functions (Python 3)
@@ -17,9 +17,14 @@ This is the code repo for a set of codelab tutorials (_coming soon_) highlightin
 Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification nor use of compatibility libraries. However, there are significant differences between both App Engine runtimes, beyond just language differences. (For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x, and Cloud Functions does not support Python 2 at all.)
 
 
+### Python versions
+
+Python **== 2.7** or **>= 3.6**
+
+
 ### Inspiration and implementation
 
-This code sample was inspired by a [suboptimal experience](https://www.mail-archive.com/google-appengine@googlegroups.com/msg94549.html) a user faced when trying to create a simple App Engine app using a Cloud API. It was also inspired by a [colleague's blog post](https://dev.to/googlecloud/portable-code-migrating-across-google-cloud-s-serverless-platforms-2ifk) showing a similar Node.js example "drifting" between GCP serverless platforms.
+This code sample was inspired by a [user's suboptimal experience](https://www.mail-archive.com/google-appengine@googlegroups.com/msg94549.html) trying to create a simple App Engine app using a Cloud API. It was also inspired by a [colleague's blog post](https://dev.to/googlecloud/portable-code-migrating-across-google-cloud-s-serverless-platforms-2ifk) showing a similar Node.js example "drifting" between GCP serverless platforms.
 
 This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate), the API for [Google Translate](https://translate.google.com), and one of GCP's [AI/ML "building block" APIs](https://cloud.google.com/products/ai/building-blocks). Such APIs are backed by pre-trained machine learning models, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini-"My Google Translate" MVP (minimally-viable product) web service.
 
@@ -29,11 +34,11 @@ This app shows developers how to use the [Cloud Translation API](https://cloud.g
 Aside from local deployment, this app is deployable to these serverless compute platforms:
 
 - [Google App Engine](https://cloud.google.com/appengine) (Standard)
-    - Standard stack-based application source code deployments ("app-hosting in the cloud")
+    - Standard source code application deployments (app-hosting in the cloud; "PaaS")
 - [Google Cloud Functions](https://cloud.google.com/functions)
-    - Instead of an entire app, this is for "FaaS" cloud-based functions or microservices
+    - Instead of an entire app, this is for cloud-based functions or microservices ("FaaS")
 - [Google Cloud Run](https://cloud.google.com/run)
-    - Fully-managed serverless "container-hosting in the cloud or CaaS" service
+    - Fully-managed serverless container-hosting in the cloud ("CaaS") service
 
 The purpose of this app is to show users how to deploy the same app to each platform and give developers hands-on experience with each. It also shows users how similar the platforms are to each other that one can "shift" between then typically with just minor configuration changes. A fourth product, [App Engine Flexible](https://cloud.google.com/appengine/docs/flexible), which sits somewhere between App Engine Standard and Cloud Run, is out-of-scope for this sample app.
 
@@ -72,21 +77,20 @@ Once you have a billing account, you can enable the services/APIs for each produ
 1. [Cloud Run](https://console.cloud.google.com/run)
 1. [Cloud Translation](https://console.cloud.google.com/apis/api/translate.googleapis.com)
 
-Alternatively, you can do it all with a single command-line request using the [`gcloud` CLI (command-line interface)](https://cloud.google.com/sdk/gcloud) available from the [Cloud SDK](https://cloud.google.com/sdk): `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
+Alternatively, you use the [`gcloud` CLI (command-line interface)](https://cloud.google.com/sdk/gcloud) available from the [Cloud SDK](https://cloud.google.com/sdk). Review the [Cloud SDK install instructions](https://cloud.google.com/sdk/docs/quickstart) if needed. New users should also reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet).
 
-Also see the [Cloud SDK install instructions](https://cloud.google.com/sdk/docs/quickstart), and new users should reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet). Below are the required settings and instructions to deploy this app for all available configurations.
+Enable all 4 services with this one `gcloud` command: `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
 
 
-### Deployments
+## Deployments
 
-Below are the instructions and requisite files to deploy this app all 8 different ways.
+Below are the required settings and instructions to deploy this app for all available configurations.
 
-#### NOTES
-
-- The application file `main.py` is always required (should be obvious).
-- The "**TL:DR;**" section at the top of each deployment type summarizes the key files in each configuration while the table beneath spells it out the details.
-- The `noxfile.py` and `test_translate.py` files are for testing only thus not listed &mdash; see the [Testing section](#testing) at the very bottom.
-- The `.*ignore` files are administrative and not described as part of the deployments.
+> NOTES:
+>- The application file `main.py` is always required (should be obvious).
+>- The "**TL:DR;**" section at the top of each deployment type summarizes the key files in each configuration while the table beneath spells it out the details.
+>- The `noxfile.py` and `test_translate.py` files are for testing only thus not listed &mdash; see the [Testing section](#testing) at the very bottom.
+>- The `.*ignore` files are administrative and not described as part of the deployments.
 
 
 ## **Local Flask server (Python 2)**
@@ -252,7 +256,7 @@ File | Description
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Run)
-`Dockerfile`|**delete** (or rename) this file (or else identical to above deployment)
+`Dockerfile`|**delete** (or rename) this file (_required_)
 `Procfile`|**use as-is** from repo
 
 1. **Delete** `Dockerfile`, `credentials.json`, and `lib` (see above)
