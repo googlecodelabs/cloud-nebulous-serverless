@@ -25,7 +25,7 @@ FLAKE8_COMMON_ARGS = [
 ]
 
 
-@nox.session(python=['2.7', '3.9'])
+@nox.session(python=['2.7', '3.6', '3.9'])
 def tests(session):
     """
     nox test session
@@ -34,7 +34,7 @@ def tests(session):
     session.run('pytest')
 
 
-@nox.session(python=['2.7', '3.9'])
+@nox.session(python=['2.7', '3.6', '3.9'])
 def lint(session):
     """
     nox lint session

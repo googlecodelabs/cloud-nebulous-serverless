@@ -14,7 +14,7 @@ This is the code repo for a set of codelab tutorials (_coming soon_) highlightin
 1. Google Cloud Run (Python 3 via Docker)
 1. Google Cloud Run (Python 3 via Cloud Buildpacks)
 
-Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification nor use of compatibility libraries. However, there are significant differences between both App Engine runtimes, beyond just language differences. (For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x, and Cloud Functions does not support Python 2 at all.)
+Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification nor use of compatibility libraries. However there are significant differences between both App Engine runtimes beyond the language updates. For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x. Neither Cloud Functions nor Cloud Buildpacks support Python 2.
 
 
 ### Python versions
@@ -26,7 +26,7 @@ Python **== 2.7** or **>= 3.6**
 
 This code sample was inspired by a [user's suboptimal experience](https://www.mail-archive.com/google-appengine@googlegroups.com/msg94549.html) trying to create a simple App Engine app using a Cloud API. It was also inspired by a [colleague's blog post](https://dev.to/googlecloud/portable-code-migrating-across-google-cloud-s-serverless-platforms-2ifk) showing a similar Node.js example "drifting" between GCP serverless platforms.
 
-This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate), the API for [Google Translate](https://translate.google.com), and one of GCP's [AI/ML "building block" APIs](https://cloud.google.com/products/ai/building-blocks). Such APIs are backed by pre-trained machine learning models, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini-"My Google Translate" MVP (minimally-viable product) web service.
+This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate), the API for [Google Translate](https://translate.google.com), and one of GCP's [AI/ML "building block" APIs](https://cloud.google.com/products/ai/building-blocks). Such APIs are backed by pre-trained machine learning models, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini Google Translate "MVP" (minimally-viable product) web service.
 
 
 ### Hosting options
@@ -41,9 +41,6 @@ Aside from local deployment, this app is deployable to these serverless compute 
     - Fully-managed serverless container-hosting in the cloud ("CaaS") service
 
 The purpose of this app is to show users how to deploy the same app to each platform and give developers hands-on experience with each. It also shows users how similar the platforms are to each other that one can "shift" between then typically with just minor configuration changes. A fourth product, [App Engine Flexible](https://cloud.google.com/appengine/docs/flexible), which sits somewhere between App Engine Standard and Cloud Run, is out-of-scope for this sample app.
-
-
-### Services
 
 The app uses the [Flask](https://flask.palletsprojects.com) micro web framework. When deploying locally, the [Flask development server](https://flask.palletsprojects.com/en/master/server) &mdash; also see [its docs](https://flask.palletsprojects.com/server) &mdash; is used. As an application, you're likely to deploy to either App Engine or Cloud Run, depending on whether your app is containerized. Since this "app" only has a single purpose/function, it is also reasonable to deploy it to Cloud Functions.
 
@@ -82,15 +79,19 @@ Alternatively, you use the [`gcloud` CLI (command-line interface)](https://cloud
 Enable all 4 services with this one `gcloud` command: `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
 
 
-## Deployments
+## Deployments and their files
 
-Below are the required settings and instructions to deploy this app for all available configurations.
+These are the files provided in this repo and the deployments they're applicable to:
+
+![repository files](https://user-images.githubusercontent.com/1102504/119735453-2f3af500-be31-11eb-9115-3fdeb22ec31c.png)
 
 > NOTES:
->- The application file `main.py` is always required (should be obvious).
->- The "**TL:DR;**" section at the top of each deployment type summarizes the key files in each configuration while the table beneath spells it out the details.
->- The `noxfile.py` and `test_translate.py` files are for testing only thus not listed &mdash; see the [Testing section](#testing) at the very bottom.
->- The `.*ignore` files are administrative and not described as part of the deployments.
+>- `*` &mdash; `requirements.txt` is used for local and App Engine (2.x) package installations and not required in the deployments themselves unlike all the others
+>- `main.py` and `templates/index.html` comprise the entire application and are always required
+>- `noxfile.py` and `test_translate.py` are for testing only; see the [Testing section](#testing) below
+>- All `.*ignore` and `.git*` files/folders are administrative and not listed in the table above nor described as in the deployments listed below.
+
+Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (shown above) while the table beneath spells out the details. No administrative files are listed.
 
 
 ## **Local Flask server (Python 2)**
