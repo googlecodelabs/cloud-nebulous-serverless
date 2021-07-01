@@ -3,7 +3,7 @@
 
 ## Description
 
-This is the code repo for a set of codelab tutorials (_coming soon_) highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless) compute platforms go. With minor configuration tweaks, this app can be deployed (at least) eight different ways:
+This is the code repo for a set of codelab tutorials (_coming soon_) highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless#serverless-products) compute platforms go. With minor configuration tweaks, this app can be deployed (at least) eight different ways:
 
 1. Local (or hosted) Flask server (Python 2)
 1. Local (or hosted) Flask server (Python 3)
@@ -60,7 +60,15 @@ However, while we suggest you "delete" `credentials.json` and not use it when de
 
 ### Cost
 
-While many Google APIs can be used without fees, use of GCP products &amp; APIs is _not_ free. Certain products do offer an ["Always Free" tier](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits) which you have to exceed in order to be billed. For our purposes, while the Translation API does not explicitly list a free quota on that page, [its pricing information page](https://cloud.google.com/translate/pricing) indicates a certain number of [translated characters](https://cloud.google.com/translate/pricing#charged-characters) as a free monthly quota applied as a credit, so long as you stay within that limit, you should not incur any additional charges. When enabling services, you may be asked for an active billing account which requires a financial instrument such as a credit card. Reference relevant pricing information before doing so.
+While many Google APIs can be used without fees, use of GCP products &amp; APIs is _not_ free. Certain products do offer an ["Always Free" tier](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits) which you have to exceed in order to be billed. For our purposes, while the Translation API does not explicitly list a free quota on that page, its pricing information page (link below) indicates a certain number of [translated characters](https://cloud.google.com/translate/pricing#charged-characters) as a free monthly quota applied as a credit, so long as you stay within that limit, you should not incur any additional charges. When enabling services, you may be asked for an active billing account which requires a financial instrument such as a credit card. Reference relevant pricing information before doing so.
+
+While Cloud Functions and Cloud Run share a similar Always Free tier and pricing model, App Engine is slightly different. Here are each product's corresponding pricing pages for you to learn more as well as link to our pricing calculator:
+
+- [App Engine](https://cloud.google.com/appengine/pricing)
+- [Cloud Functions](https://cloud.google.com/functions/pricing)
+- [Cloud Run](https://cloud.google.com/run/pricing)
+- [Cloud Translation](https://cloud.google.com/translate/pricing)
+- [GCP pricing calculator](https://cloud.google.com/products/calculator)
 
 Furthermore, deploying to GCP serverless platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is than sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing); storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
 
@@ -86,12 +94,13 @@ These are the files provided in this repo and the deployments they're applicable
 ![repository files](https://user-images.githubusercontent.com/1102504/119735453-2f3af500-be31-11eb-9115-3fdeb22ec31c.png)
 
 > NOTES:
->- `*` &mdash; `requirements.txt` is used for local and App Engine (2.x) package installations and not required in the deployments themselves unlike all the others
+>- * &mdash; `requirements.txt` is used for local and App Engine (2.x) package installations and not required in deployments themselves unlike all others
 >- `main.py` and `templates/index.html` comprise the entire application and are always required
->- `noxfile.py` and `test_translate.py` are for testing only; see the [Testing section](#testing) below
->- All `.*ignore` and `.git*` files/folders are administrative and not listed in the table above nor described as in the deployments listed below.
+>- `noxfile.py` and `test_translate.py` are for testing only; see [Testing section](#testing) below
+>- All `.*ignore` and `.git*` files/folders are administrative and not listed in table above nor deployments below
+>- Files applicable only to a specific language version are annotated above
 
-Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (shown above) while the table beneath spells out the details. No administrative files are listed.
+Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (see above) while the table beneath spells out the details. No administrative files are listed.
 
 
 ## **Local Flask server (Python 2)**
@@ -342,39 +351,57 @@ nox > Running session tests-2.7
 nox > Creating virtual environment (virtualenv) using python2.7 in .nox/tests-2-7
 nox > python -m pip install pytest blinker flask google-cloud-translate
 nox > pytest
-============================================== test session starts ==============================================
+============================================ test session starts =============================================
 platform darwin -- Python 2.7.16, pytest-4.6.11, py-1.10.0, pluggy-0.13.1
-rootdir: /tmp/cloud-nebulous-serverless-python
+rootdir: /private/tmp/cloud-nebulous-serverless-python
 collected 2 items
 
-test_translate.py ..                                                                                      [100%]
+test_translate.py ..                                                                                   [100%]
 
-=============================================== warnings summary ================================================
+============================================== warnings summary ==============================================
 .nox/tests-2-7/lib/python2.7/site-packages/google/cloud/translate_v3/__init__.py:32
-  /tmp/cloud-nebulous-serverless-python/.nox/tests-2-7/lib/python2.7/site-packages/google/cloud/translate_v3/__init__.py:32: DeprecationWarning: A future version of this library will drop support for Python 2.7. More details about Python 2 support for Google Cloud Client Libraries can be found at https://cloud.google.com/python/docs/python2-sunset/
+  /private/tmp/cloud-nebulous-serverless-python/.nox/tests-2-7/lib/python2.7/site-packages/google/cloud/translate_v3/__init__.py:32: DeprecationWarning: A future version of this library will drop support for Python 2.7. More details about Python 2 support for Google Cloud Client Libraries can be found at https://cloud.google.com/python/docs/python2-sunset/
     warnings.warn(message, DeprecationWarning)
 
 -- Docs: https://docs.pytest.org/en/latest/warnings.html
-===================================== 2 passed, 1 warnings in 7.22 seconds ======================================
+==================================== 2 passed, 1 warnings in 1.02 seconds ====================================
 nox > Session tests-2.7 was successful.
+nox > Running session tests-3.6
+nox > Creating virtual environment (virtualenv) using python3.6 in .nox/tests-3-6
+nox > python -m pip install pytest blinker flask google-cloud-translate
+nox > pytest
+============================================ test session starts =============================================
+platform darwin -- Python 3.6.8, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+rootdir: /private/tmp/cloud-nebulous-serverless-python
+collected 2 items
+
+test_translate.py ..                                                                                   [100%]
+
+============================================= 2 passed in 1.22s ==============================================
+nox > Session tests-3.6 was successful.
 nox > Running session tests-3.9
 nox > Creating virtual environment (virtualenv) using python3.9 in .nox/tests-3-9
 nox > python -m pip install pytest blinker flask google-cloud-translate
 nox > pytest
-============================================== test session starts ==============================================
-platform darwin -- Python 3.9.1, pytest-6.2.3, py-1.10.0, pluggy-0.13.1
-rootdir: /tmp/cloud-nebulous-serverless-python
+============================================ test session starts =============================================
+platform darwin -- Python 3.9.1, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+rootdir: /private/tmp/cloud-nebulous-serverless-python
 collected 2 items
 
-test_translate.py ..                                                                                      [100%]
+test_translate.py ..                                                                                   [100%]
 
-=============================================== 2 passed in 6.19s ===============================================
+============================================= 2 passed in 1.04s ==============================================
 nox > Session tests-3.9 was successful.
 nox > Running session lint-2.7
 nox > Creating virtual environment (virtualenv) using python2.7 in .nox/lint-2-7
 nox > python -m pip install flake8
 nox > flake8 --show-source --builtin=gettext --max-complexity=20 --exclude=.nox,.cache,env,lib,generated_pb2,*_pb2.py,*_pb2_grpc.py --ignore=E121,E123,E126,E203,E226,E24,E266,E501,E704,W503,W504,I202 --max-line-length=88 .
 nox > Session lint-2.7 was successful.
+nox > Running session lint-3.6
+nox > Creating virtual environment (virtualenv) using python3.6 in .nox/lint-3-6
+nox > python -m pip install flake8
+nox > flake8 --show-source --builtin=gettext --max-complexity=20 --exclude=.nox,.cache,env,lib,generated_pb2,*_pb2.py,*_pb2_grpc.py --ignore=E121,E123,E126,E203,E226,E24,E266,E501,E704,W503,W504,I202 --max-line-length=88 .
+nox > Session lint-3.6 was successful.
 nox > Running session lint-3.9
 nox > Creating virtual environment (virtualenv) using python3.9 in .nox/lint-3-9
 nox > python -m pip install flake8
@@ -382,8 +409,9 @@ nox > flake8 --show-source --builtin=gettext --max-complexity=20 --exclude=.nox,
 nox > Session lint-3.9 was successful.
 nox > Ran multiple sessions:
 nox > * tests-2.7: success
+nox > * tests-3.6: success
 nox > * tests-3.9: success
 nox > * lint-2.7: success
+nox > * lint-3.6: success
 nox > * lint-3.9: success
-$
 ```
