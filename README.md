@@ -37,7 +37,7 @@ Aside from local deployment, this app is deployable to these serverless compute 
     - Standard source code application deployments (app-hosting in the cloud; "PaaS")
 - [Google Cloud Functions](https://cloud.google.com/functions)
     - Instead of an entire app, this is for cloud-based functions or microservices ("FaaS")
-- [Google Cloud Run](https://cloud.google.com/run)
+- [Google Cloud Run](https://cloud.run)
     - Fully-managed serverless container-hosting in the cloud ("CaaS") service
 
 The purpose of this app is to show users how to deploy the same app to each platform and give developers hands-on experience with each. It also shows users how similar the platforms are to each other that one can "shift" between then typically with just minor configuration changes. A fourth product, [App Engine Flexible](https://cloud.google.com/appengine/docs/flexible), which sits somewhere between App Engine Standard and Cloud Run, is out-of-scope for this sample app.
@@ -70,7 +70,7 @@ While Cloud Functions and Cloud Run share a similar Always Free tier and pricing
 - [Cloud Translation](https://cloud.google.com/translate/pricing)
 - [GCP pricing calculator](https://cloud.google.com/products/calculator)
 
-Furthermore, deploying to GCP serverless platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is than sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing); storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
+Furthermore, deploying to GCP serverless platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is then sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing) or [Artifact Registry](https://cloud.google.com/artifact-registry/pricing); storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
 
 
 ### Enable Cloud services used
@@ -294,7 +294,7 @@ File | Description
         - [Python Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-python)
         - [Default service accounts for Cloud Functions](https://cloud.google.com/functions/docs/concepts/iam#access_control_for_service_accounts)
     - Cloud Run
-        - [Cloud Run home page](https://cloud.google.com/run)
+        - [Cloud Run home page](https://cloud.run)
         - [Cloud Run documentation](https://cloud.google.com/run/docs)
         - [Python Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
         - [Default service accounts for Cloud Run](https://cloud.google.com/run/docs/securing/service-identity)
