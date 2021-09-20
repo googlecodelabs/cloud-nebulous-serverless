@@ -7,13 +7,13 @@ This is the code repo for a set of codelab tutorials highlighting a single "nebu
 
 Deployment | Python 2 | Python 3
 --- | --- | ---
-Local/hosted Flask|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-flask?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservflask_sms_&utm_content=-)|_same as Python 2_
-App Engine|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae2_sms_&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae3_sms_&utm_content=-)
-Cloud Functions| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcf?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcf_sms_&utm_content=-)
-Cloud Run (Docker)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr2_sms_&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr3_sms_&utm_content=-)
-Cloud Run (Buildpacks)| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcrbp?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcrbp_sms_&utm_content=-)
+Local/hosted Flask|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-flask?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservflask_sms_201020&utm_content=-)|_same as Python 2_
+App Engine|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae2_sms_201020&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae3_sms_201020&utm_content=-)
+Cloud Functions| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcf?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcf_sms_201020&utm_content=-)
+Cloud Run (Docker)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr2_sms_201020&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr3_sms_201020&utm_content=-)
+Cloud Run (Buildpacks)| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcrbp?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcrbp_sms_201020&utm_content=-)
 
-Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification nor use of compatibility libraries. However there are significant differences between both App Engine runtimes beyond the version language differences. For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x. Neither Cloud Functions nor Cloud Buildpacks support Python 2.
+Admittedly, there may _seem_ to be a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification or use of compatibility libraries. However there are significant differences between both App Engine runtimes beyond the version language differences. For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x. Neither Cloud Functions nor Cloud Buildpacks support Python 2.
 
 
 ### Python versions
@@ -43,7 +43,7 @@ The purpose of this app is to show users how to deploy the same app to each plat
 
 The app uses the [Flask](https://flask.palletsprojects.com) micro web framework. When deploying locally, the [Flask development server](https://flask.palletsprojects.com/en/master/server) &mdash; also see [its docs](https://flask.palletsprojects.com/server) &mdash; is used. As an application, you're likely to deploy to either App Engine or Cloud Run, depending on whether your app is containerized. Since this "app" only has a single purpose/function, it is also reasonable to deploy it to Cloud Functions.
 
-App Engine is for users who wish to deploy a traditional web stack (LAMP, MEAN, etc.) application direct from source without knowledge of containers, Docker, nor `Dockerfile`s. Cloud Run is similar but for applications that are explicitly containerized, freeing you from language, library, or binary restrictions. Cloud Functions is for deploying simple microservices like ours, and its Python runtime sends Flask request objects directly to deployed functions.
+App Engine is for users who wish to deploy a traditional web stack (LAMP, MEAN, etc.) application direct from source without knowledge of containers, Docker, or `Dockerfile`s. Cloud Run is similar but for applications that are explicitly containerized, freeing you from language, library, or binary restrictions. Cloud Functions is for deploying simple microservices like ours, and its Python runtime sends Flask request objects directly to deployed functions.
 
 When running on App Engine or Cloud Functions, this sample app uses the default web server that comes with those services (`gunicorn`). For Cloud Run, developers must start their own web server; this sample app again chooses Flask's development server (but can be configured to your server of choice; `gunicorn` can be enabled if uncommented in the configuration.
 
@@ -103,7 +103,7 @@ These are the files provided in this repo and the deployments they're applicable
 >- * &mdash; `requirements.txt` is used for local and App Engine (2.x) package installations and not required in deployments themselves unlike all others
 >- `main.py` and `templates/index.html` comprise the entire application and are always required
 >- `noxfile.py` and `test_translate.py` are for testing only; see [Testing section](#testing) below
->- All `.*ignore` and `.git*` files/folders are administrative and not listed in table above nor deployments below
+>- All `.*ignore` and `.git*` files/folders are administrative and not listed in table above or deployments below
 >- Files applicable only to a specific language version are annotated above
 
 Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (see above) while the table beneath spells out the details. No administrative files are listed.
