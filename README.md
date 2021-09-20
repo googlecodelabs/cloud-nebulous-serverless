@@ -3,18 +3,17 @@
 
 ## Description
 
-This is the code repo for a set of codelab tutorials (_coming soon_) highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless#serverless-products) compute platforms go. With minor configuration tweaks, this app can be deployed (at least) eight different ways:
+This is the code repo for a set of codelab tutorials highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless#serverless-products) compute platforms go. With minor configuration tweaks, this app can be deployed (at least) eight different ways:
 
-1. Local (or hosted) Flask server (Python 2)
-1. Local (or hosted) Flask server (Python 3)
-1. Google App Engine (Python 2)
-1. Google App Engine (Python 3)
-1. Google Cloud Functions (Python 3)
-1. Google Cloud Run (Python 2 via Docker)
-1. Google Cloud Run (Python 3 via Docker)
-1. Google Cloud Run (Python 3 via Cloud Buildpacks)
+Deployment | Python 2 | Python 3
+--- | --- | ---
+Local/hosted Flask|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-flask?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservflask_sms_&utm_content=-)|_same as Python 2_
+App Engine|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae2_sms_&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae3_sms_&utm_content=-)
+Cloud Functions| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcf?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcf_sms_&utm_content=-)
+Cloud Run (Docker)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr2_sms_&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr3_sms_&utm_content=-)
+Cloud Run (Buildpacks)| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcrbp?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcrbp_sms_&utm_content=-)
 
-Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification nor use of compatibility libraries. However there are significant differences between both App Engine runtimes beyond the language updates. For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x. Neither Cloud Functions nor Cloud Buildpacks support Python 2.
+Admittedly, there's a bit of "cheating" due to the duplicity of Python 2 and 3, especially since the application is compatible across both language versions without modification nor use of compatibility libraries. However there are significant differences between both App Engine runtimes beyond the version language differences. For local Flask or Cloud Run deployments, there are either little or no updates to go from 2.x to 3.x. Neither Cloud Functions nor Cloud Buildpacks support Python 2.
 
 
 ### Python versions
@@ -70,7 +69,7 @@ While Cloud Functions and Cloud Run share a similar Always Free tier and pricing
 - [Cloud Translation](https://cloud.google.com/translate/pricing)
 - [GCP pricing calculator](https://cloud.google.com/products/calculator)
 
-Furthermore, deploying to GCP serverless platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is then sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing) or [Artifact Registry](https://cloud.google.com/artifact-registry/pricing); storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
+Furthermore, deploying to GCP serverless platforms incur [minor build and storage costs](https://cloud.google.com/appengine/pricing#pricing-for-related-google-cloud-products). [Cloud Build](https://cloud.google.com/build/pricing) has its own free quota as does [Cloud Storage](https://cloud.google.com/storage/pricing#cloud-storage-always-free). For greater transparency, Cloud Build builds your application image which is then sent to the [Cloud Container Registry](https://cloud.google.com/container-registry/pricing), or [Artifact Registry](https://cloud.google.com/artifact-registry/pricing), its successor; storage of that image uses up some of that (Cloud Storage) quota as does network egress when transferring that image to the service you're deploying to. However you may live in region that does not have such a free tier, so be aware of your storage usage to minimize potential costs. (You may look at what storage you're using and how much, including deleting build artifacts via [your Cloud Storage browser](https://console.cloud.google.com/storage/browser).)
 
 
 ### Enable Cloud services used
@@ -85,6 +84,13 @@ Once you have a billing account, you can enable the services/APIs for each produ
 Alternatively, you use the [`gcloud` CLI (command-line interface)](https://cloud.google.com/sdk/gcloud) available from the [Cloud SDK](https://cloud.google.com/sdk). Review the [Cloud SDK install instructions](https://cloud.google.com/sdk/docs/quickstart) if needed. New users should also reference the [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet).
 
 Enable all 4 services with this one `gcloud` command: `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
+
+
+### The application itself
+
+The app consists of a simple web page prompting the user for a phrase to translate from English to Spanish. The translated results along with the original phrase are presented along with an empty form for a follow-up translation if desired. While the majority of this app's deployments are in Python 3, there are still many users working on upgrading from Python 2, so some of those deployments are available to help with migration planning. This is what the app looks like after completing one translation (Cloud Run version):
+
+![app screenshot](https://user-images.githubusercontent.com/1102504/133918482-fc66d512-aeb7-4982-bcd2-75794cd21349.png)
 
 
 ## Deployments and their files
