@@ -158,7 +158,7 @@ File | Description
 --- | ---
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
-`app.yaml`|**use as-is** from repo (ensure `#runtime:python38` commented out)
+`app.yaml`|**use as-is** from repo (ensure `#runtime:python39` commented out)
 `appengine_config.py`|**use as-is** from repo
 `requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
 `lib`|**create folder** per instructions below
@@ -178,7 +178,7 @@ File | Description
 --- | ---
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
-`app.yaml`|**uncomment** `runtime:python38` (can also use 3.7 or 3.9) and **delete all other lines**
+`app.yaml`|**uncomment** `runtime:python39` (can also use 3.7 or 3.8) and **delete all other lines**
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Python 3 App Engine)
@@ -205,7 +205,7 @@ File | Description
 `Procfile`|_unused_ (delete or leave as-is)
 
 1. **Delete** `credentials.json` and `lib` (see above)
-1. **Run** `gcloud functions deploy translate --runtime python37 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (can also use 3.8 or 3.9)
+1. **Run** `gcloud functions deploy translate --runtime python39 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (can also use 3.7 or 3.8)
     - That command creates &amp; deploys a new HTTP-triggered Cloud Function (name must match what's in `main.py`)
 1. There is no support for Python 2 with Cloud Functions
 
@@ -220,13 +220,14 @@ File | Description
 `credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
-`requirements.txt`|**use as-is** from repo
+`requirements.txt`|**uncomment** `grpcio==1.39.0`
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Run)
 `Dockerfile`|**use as-is** from repo (ensure `#FROM python:3-slim` commented out)
 `Procfile`|_unused_ (delete or leave as-is)
 
 1. **Delete** `credentials.json` and `lib` (see above)
-1. **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. **Edit** `requirements.txt` to specify the final version of `grpcio` supporting Python 2
+1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and finally `docker run` to deploy the service, all in one convenient command.
 1. You can also use this shortcut to deploy to Cloud Run:
     [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
@@ -252,7 +253,7 @@ File | Description
 `Procfile`|_unused_ (delete or leave as-is)
 
 1. **Edit** `Dockerfile` and **delete** `credentials.json` and `lib` (see above)
-1. **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
 1. The shortcut "button" above can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
 1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
@@ -277,7 +278,7 @@ File | Description
 
 1. **Delete** `Dockerfile`, `credentials.json`, and `lib` (see above)
 1. There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
-1. **Run** `gcloud beta run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
 1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
     1. **Uncomment** the `web:` entry for `gunicorn` replacing the default entry in `Procfile`
