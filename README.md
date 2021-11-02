@@ -111,7 +111,7 @@ Below are the required settings and instructions for all documented deployments.
 
 ## **Local Flask server (Python 2)**
 
-- **TL;DR:** application files plus `credentials.json`
+- **TL;DR:** application files (`main.py` &amp; `requirements.txt`) plus `credentials.json`
 
 File | Description
 --- | ---
@@ -131,7 +131,7 @@ File | Description
 
 ## **Local Flask server (Python 3)**
 
-- **TL;DR:** application files plus `credentials.json` (identical to Python 2 deployment)
+- **TL;DR:** app files plus `credentials.json` (identical to Python 2 deployment)
 
 File | Description
 --- | ---
@@ -172,7 +172,7 @@ File | Description
 
 ## **App Engine (Python 3)**
 
-- **TL;DR:** app files plus `app.yaml` and `requirements.txt`
+- **TL;DR:** app files plus `app.yaml`
 
 File | Description
 --- | ---
@@ -191,7 +191,7 @@ File | Description
 
 ## **Cloud Functions (Python 3)**
 
-- **TL;DR:** app files plus `requirements.txt`
+- **TL;DR:** app files
 
 File | Description
 --- | ---
@@ -212,7 +212,7 @@ File | Description
 
 ## **Cloud Run (Python 2 via Docker)**
 
-- **TL;DR:** app files plus `requirements.txt` and `Dockerfile`
+- **TL;DR:** app files plus `Dockerfile`
 
 File | Description
 --- | ---
@@ -239,7 +239,7 @@ File | Description
 
 ## **Cloud Run (Python 3 via Docker)**
 
-- **TL;DR:** app files plus `requirements.txt` and `Dockerfile` (identical to Python 2 deployment except for minor edit)
+- **TL;DR:** app files plus `Dockerfile` (nearly identical to Python 2 deployment)
 
 File | Description
 --- | ---
@@ -263,7 +263,7 @@ File | Description
 
 ## **Cloud Run (Python 3 via Cloud Buildpacks)**
 
-- **TL;DR:** app files plus `requirements.txt` and [`Procfile`](https://devcenter.heroku.com/articles/procfile)
+- **TL;DR:** app files plus [`Procfile`](https://devcenter.heroku.com/articles/procfile)
 
 File | Description
 --- | ---
