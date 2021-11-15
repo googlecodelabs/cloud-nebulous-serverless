@@ -3,7 +3,7 @@
 
 ## Description
 
-This is the code repo for a set of codelab tutorials highlighting a single "nebulous" sample app. What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless#serverless-products) compute platforms go. With minor configuration tweaks, this app can be deployed (at least) eight different ways:
+This is the code repo for a set of codelab tutorials highlighting a single ["nebulous" sample app](https://twitter.com/googledevs/status/1433113274984271875?utm_source=twitter&utm_medium=unpaidsoc&utm_campaign=CDR_wes_aap-serverless_mgrcrbdpk_sms_201031&utm_content=-). What makes this app unique is that it demonstrates the flexibility of _where_ you can run your apps as far as [Google Cloud serverless](https://cloud.google.com/serverless#serverless-products) compute platforms go. With minor configuration tweaks, this app can be deployed (at least) eight different ways:
 
 Deployment | Python 2 | Python 3
 --- | --- | ---
@@ -25,7 +25,7 @@ Python **== 2.7** or **>= 3.6**
 
 This code sample was inspired by a [user's suboptimal experience](https://www.mail-archive.com/google-appengine@googlegroups.com/msg94549.html) trying to create a simple App Engine app using a Cloud API. It was also inspired by a [colleague's blog post](https://dev.to/googlecloud/portable-code-migrating-across-google-cloud-s-serverless-platforms-2ifk) showing a similar Node.js example "drifting" between GCP serverless platforms.
 
-This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate), the API for [Google Translate](https://translate.google.com), and one of GCP's [AI/ML "building block" APIs](https://cloud.google.com/products/ai/building-blocks). Such APIs are backed by pre-trained machine learning models, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini Google Translate "MVP" (minimally-viable product) web service.
+This app shows developers how to use the [Cloud Translation API](https://cloud.google.com/translate), the API for [Google Translate](https://translate.google.com), and one of GCP's [AI/ML "building block" APIs](https://web.archive.org/web/20210308144225/https://cloud.google.com/products/ai/building-blocks). Such APIs are backed by pre-trained machine learning models, allowing developers with little or no background in AI/ML to leverage machine learning with only API calls. The application implements a mini Google Translate "MVP" (minimally-viable product) web service.
 
 
 ### Hosting options
@@ -178,7 +178,7 @@ File | Description
 --- | ---
 `main.py`|**use as-is** from repo
 `credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
-`app.yaml`|**uncomment** `runtime:python39` (can also use 3.7 or 3.8) and **delete all other lines**
+`app.yaml`|**uncomment** `runtime:python39` (or Python 3.7 or 3.8); **delete** all other lines
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
 `lib`|**delete** (or rename) this folder if it exists (not used with Python 3 App Engine)
@@ -205,7 +205,7 @@ File | Description
 `Procfile`|_unused_ (delete or leave as-is)
 
 1. **Delete** `credentials.json` and `lib` (see above)
-1. **Run** `gcloud functions deploy translate --runtime python39 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (can also use 3.7 or 3.8)
+1. **Run** `gcloud functions deploy translate --runtime python39 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (or Python 3.7 or 3.8)
     - That command creates &amp; deploys a new HTTP-triggered Cloud Function (name must match what's in `main.py`)
 1. There is no support for Python 2 with Cloud Functions
 
@@ -226,7 +226,7 @@ File | Description
 `Procfile`|_unused_ (delete or leave as-is)
 
 1. **Delete** `credentials.json` and `lib` (see above)
-1. **Edit** `requirements.txt` to specify the final version of `grpcio` supporting Python 2
+1. **Edit** `requirements.txt` to specify final version of `grpcio` supporting Python 2
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and finally `docker run` to deploy the service, all in one convenient command.
 1. You can also use this shortcut to deploy to Cloud Run:
@@ -330,7 +330,7 @@ File | Description
     - [Cloud Translation Python client library (v3 for 3.x)](https://cloud.google.com/translate/docs/reference/libraries/v3/python)
     - [Cloud Translation Python client library (v2 for 2.x)](https://cloud.google.com/translate/docs/reference/libraries/v2/python)
     - [Translation API pricing page](https://cloud.google.com/translate/pricing)
-    - [All Cloud AI/ML "building block" APIs](https://cloud.google.com/products/ai/building-blocks)
+    - [All Cloud AI/ML "building block" APIs](https://web.archive.org/web/20210308144225/https://cloud.google.com/products/ai/building-blocks)
     - [Google ML Kit (Cloud AI/ML API subset for mobile)](https://developers.google.com/ml-kit)
     - [Google ML Kit Translation API](https://developers.google.com/ml-kit/language/translation)
 
