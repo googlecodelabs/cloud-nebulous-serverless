@@ -3,17 +3,17 @@
 
 ## Description
 
-This is the repo for a set apps that demonstrate how to call Google APIs from the serverless platforms available from Google Cloud. Working wth Cloud APIs differs from non-Cloud Google APIs, so that is how the samples are organized (only [Cloud API sample apps](cloud) are available currently). The unique aspect of all of the sample apps is that they can be deployed locally or to any of the [Cloud serverless platforms](https://cloud.google.com/serverless) without any code changes... this is taken care of in configuration.
+This is the repo for a set of sample apps and corresponding codelab tutorials demonstrating how to call Google APIs from the serverless compute platforms available from Google Cloud. Working wth Cloud APIs differs from non-Cloud Google APIs, so that is how the samples are organized (only [Cloud API sample apps](cloud) are available currently... non-Cloud samples coming soon). The unique aspect of all of the sample apps is that they can be deployed locally or to any of the [Cloud serverless platforms](https://cloud.google.com/serverless) without any code changes... this is taken care of in configuration.
 
 
 ## Hosting options
 
 Aside from running locally, the app can be deployed to any Cloud serverless platform:
 
-- [App Engine](https://cloud.google.com/appengine) (Standard)
-    - Standard source code application deployments (app-hosting in the cloud; "PaaS")
+- [App Engine](https://cloud.google.com/appengine) (standard environment)
+    - Source-based application deployments (app-hosting in the cloud; "PaaS")
 - [Cloud Functions](https://cloud.google.com/functions)
-    - Instead of an entire app, this is for cloud-based functions or microservices ("FaaS")
+    - Cloud-hosted functions or microservices ("FaaS"), possibly event-driven
 - [Cloud Run](https://cloud.run)
     - Fully-managed serverless container-hosting in the cloud ("CaaS") service
 
@@ -21,7 +21,7 @@ _App Engine_ is for users who wish to deploy a traditional web stack (LAMP, MEAN
 
 When running on App Engine or Cloud Functions, this sample app uses the default web server that comes with those services (`gunicorn`). For Cloud Run, developers must start their own web server; this sample app again chooses Flask's development server (but can be configured to your server of choice; `gunicorn` can be enabled if uncommented in the configuration.
 
-A "fourth" product, [App Engine Flexible](https://cloud.google.com/appengine/docs/flexible), which sits somewhere between App Engine Standard and Cloud Run, is out-of-scope for these sample apps at this time.
+A "fourth" product, [App Engine (flexible environment)](https://cloud.google.com/appengine/docs/flexible), which sits somewhere between App Engine standard environment and Cloud Run, is out-of-scope for these sample apps at this time.
 
 
 ## Language/web framework options

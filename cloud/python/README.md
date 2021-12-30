@@ -233,14 +233,14 @@ Instructions:
 These are relevant links only to the app in this folder (for all others, see the [README one level up](../README.md):
 
 - [Python 3 App Engine quickstart](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
-- [Python 3 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
-- [Python 2 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
+- [Python 3 App Engine (standard environment) runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
+- [Python 2 App Engine (standard environment) runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
 - [Python Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-python)
 - [Python Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
-- [Differences between Python 2 &amp; 3 App Engine (Standard) runtimes](https://cloud.google.com/appengine/docs/standard/runtimes)
-- [Python 2 to 3 App Engine (Standard) migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
-- [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-rundocker) (Docker)
-- [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-runbldpks) (Cloud Buildpacks)
+- [Differences between Python 2 &amp; 3 App Engine (standard environment) runtimes](https://cloud.google.com/appengine/docs/standard/runtimes)
+- [Python 2 to 3 App Engine (standard environment) migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
+- [App Engine (standard environment) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-rundocker) (Docker)
+- [App Engine (standard environment) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-runbldpks) (Cloud Buildpacks)
 - [Flask](https://flask.palletsprojects.com)
 
 

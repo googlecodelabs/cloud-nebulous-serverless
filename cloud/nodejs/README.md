@@ -58,7 +58,7 @@ The command creates &amp; deploys a new HTTP-triggered Cloud Function named `tra
 These are relevant links only to the app in this folder (for all others, see the [README one level up](../README.md):
 
 - [Node.js App Engine quickstart](https://cloud.google.com/appengine/docs/standard/nodejs/quickstart)
-- [Nodejs App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/nodejs/runtime)
+- [Nodejs App Engine (standard environment) runtime](https://cloud.google.com/appengine/docs/standard/nodejs/runtime)
 - [Node.js Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-nodejs)
 - [Node.js Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/nodejs)
 - [Express.js](https://expressjs.com)
