@@ -2,18 +2,19 @@
 
 ## Node.js version
 
-The Node.js version of this app and its deployments are simpler than the [Python equivalent](../python), primarily due to the differences between Python 2 and 3, and also because Node.js is not an App Engine legacy runtime. As a result, there is a single [Node.js codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-nodejs?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservnodejs_sms_201130&utm_content=-) (self-paced, hands-on tutorial) for deploying this app while there are seven for Python.
+The Node.js version of this app and its deployments are simpler than the [Python equivalent](../python), primarily due to the differences between Python 2 and 3, and also because Node.js is not an App Engine legacy runtime. As a result, there is a single [Node.js codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-nodejs?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservnodejs_sms_201130&utm_content=-) (_coming soon_) for deploying this app while there are seven for Python.
 
 
 ## Deployments and their files
 
 File | Description
 --- | ---
-`index.js`|main application file
-`package.json`|3rd-party package requirements file
-`app.yaml`|App Engine configuration file (only for App Engine deployments)
+[`index.js`](index.js)|main application file
+[`templates/index.htmlk`](templates/index.html)|application HTML template
+[`package.json`](package.json)|3rd-party package requirements file
+[`app.yaml`](app.yaml)|App Engine configuration file (only for App Engine deployments)
 `credentials.json`|service account public/private key-pair (only for running locally)
-`.gcloudignore`|files to exclude deploying to the cloud (administrative)
+[`.gcloudignore`](.gcloudignore)|files to exclude deploying to the cloud (administrative)
 `README.md`|this file (administrative)
 
 Below are the required settings and instructions for all (documented) deployments; administrative files are not discussed. The `app.yaml` and `credentials.json` files are only used for specific deployments and can be deleted for the others. More regarding `credentials.json`: if/when not provided in Google Cloud deployments, all compute platforms (including serverless) use [default service accounts](https://cloud.google.com/iam/docs/service-accounts#default) which provide a broad set of permissions to assist you in getting a working prototype. When preparing to launch to production, Google Cloud team recommends the best practice of "least privileges," and utilize [user-managed service accounts](https://cloud.google.com/iam/docs/service-accounts#user-managed) with the minimal set of permissions allowing your app to function properly.
@@ -49,7 +50,7 @@ The command creates &amp; deploys a new HTTP-triggered Cloud Function named `tra
 **TL;DR:** Uses only the application files. Instruction(s):
 
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
-    - A `Dockerfile` is optional, but if you wish to create one, place it in the top-level folder so the build system can access it. To get an idea of what to expect, check out the [Python version's `Dockerfile`](../python/Dockerfile).
+    - A `Dockerfile` is optional, but if you wish to create one, place it in the top-level folder so the build system can access it. Also see the [Python version's `Dockerfile`](../python/Dockerfile) to get an idea of what a Node equivalent would be similar to.
 
 
 ## References

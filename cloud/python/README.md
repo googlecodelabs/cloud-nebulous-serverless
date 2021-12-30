@@ -6,6 +6,7 @@ While the majority of this app's deployments are in Python 3, there are still us
 
 - For local or Cloud Run deployments, there are little/no updates to go from Python 2 to 3.
 - Neither Cloud Functions nor Cloud Run with Cloud Buildpacks support Python 2.
+- There is also an [equivalent Node.js version](,,/nodejs) of this app.
 
 
 ## Codelab links
@@ -35,7 +36,7 @@ These are the files provided in this repo and the deployments they're applicable
 Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (see above) while the table beneath spells out the details. No administrative files are listed.
 
 
-## **Local Flask server (Python 2)** ([codelab link](
+## **Local Flask server (Python 2)**
 
 **TL;DR:** application files (`main.py` &amp; `requirements.txt`) plus `credentials.json`
 

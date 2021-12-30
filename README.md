@@ -3,7 +3,7 @@
 
 ## Description
 
-This is the repo for a set apps that demonstrate how to call Google APIs from the serverless platforms available from Google Cloud. Working wth Cloud APIs differs from non-Cloud Google APIs, so that is how the samples are organized (only Cloud API sample apps are available currently). The unique aspect of all of the sample apps is that they can be deployed locally or to any of the [Cloud serverless platforms](https://cloud.google.com/serverless) without any code changes... this is taken care of in configuration.
+This is the repo for a set apps that demonstrate how to call Google APIs from the serverless platforms available from Google Cloud. Working wth Cloud APIs differs from non-Cloud Google APIs, so that is how the samples are organized (only [Cloud API sample apps](cloud) are available currently). The unique aspect of all of the sample apps is that they can be deployed locally or to any of the [Cloud serverless platforms](https://cloud.google.com/serverless) without any code changes... this is taken care of in configuration.
 
 
 ## Hosting options
