@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><title>My Google Translate 1990s</title><body>
+<style>
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: #DDDDDD;
+}
+</style>
+<h2>My Google Translate (1990s edition)</h2>
+
+{% if trans['text'] %}
+    <h4>Previous translation</h4>
+    <li><b>Original</b>:   {{ orig['text'] }}  (<i>{{ orig['lc'][0] }}</i>)</li>
+    <li><b>Translated</b>: {{ trans['text'] }} (<i>{{ trans['lc'][0] }}</i>)</li>
+{% endif %}
+
+<h4>Enter <i>{{ orig['lc'][1] }}</i> text to translate to <i>{{ trans['lc'][1] }}</i>:</h4>
+<form method="POST"><input name="text"><input type="submit"></form>
+</body></html>

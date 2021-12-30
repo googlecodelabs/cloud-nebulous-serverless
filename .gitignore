@@ -3,6 +3,10 @@
 __pycache__/
 /setup.cfg
 
+# JavaScript/Node.js
+node_modules*
+package-lock.json
+
 # C extensions
 *.so
 
@@ -34,6 +38,7 @@ pip-log.txt
 coverage.xml
 *sponge_log.xml
 system_tests/local_test_setup
+credentials.json
 
 # Mac
 .DS_Store
