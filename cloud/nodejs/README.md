@@ -2,7 +2,7 @@
 
 ## Node.js version
 
-The Node.js version of this app and its deployments are simpler than the Python equivalent, primarily due to the differences between Python 2 and 3, and also because Node.js is not an App Engine legacy runtime. As a result, there is a single Node.js codelab (self-paced, hands-on tutorial) for deploying this app while there are seven for Python.
+The Node.js version of this app and its deployments are simpler than the [Python equivalent](../python), primarily due to the differences between Python 2 and 3, and also because Node.js is not an App Engine legacy runtime. As a result, there is a single [Node.js codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-nodejs?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservnodejs_sms_201130&utm_content=-) (self-paced, hands-on tutorial) for deploying this app while there are seven for Python.
 
 
 ## Deployments and their files
@@ -54,55 +54,13 @@ The command creates &amp; deploys a new HTTP-triggered Cloud Function named `tra
 
 ## References
 
-1. Google Cloud serverless product pages
-    - App Engine
-        - [App Engine home page](https://cloud.google.com/appengine)
-        - [App Engine documentation](https://cloud.google.com/appengine/docs)
-        - [Node.js App Engine quickstart](https://cloud.google.com/appengine/docs/standard/nodejs/quickstart)
-        - [nodejs App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/nodejs/runtime)
-        - [Default service accounts](https://cloud.google.com/appengine/docs/standard/nodejs/service-account)
-    - Cloud Functions
-        - [Cloud Functions home page](https://cloud.google.com/functions)
-        - [Cloud Functions documentation](https://cloud.google.com/functions/docs)
-        - [Node.js Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-nodejs)
-        - [Default service accounts](https://cloud.google.com/functions/docs/concepts/iam#access_control_for_service_accounts)
-    - Cloud Run
-        - [Cloud Run home page](https://cloud.run)
-        - [Cloud Run documentation](https://cloud.google.com/run/docs)
-        - [Node.js Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/nodejs)
-        - [Default service accounts ](https://cloud.google.com/run/docs/securing/service-identity)
+These are relevant links only to the app in this folder (for all others, see the [README one level up](../README.md):
 
-1. Cloud SDK and `gcloud` product pages
-    - [Cloud SDK](https://cloud.google.com/sdk)
-    - [Cloud SDK installation](https://cloud.google.com/sdk/docs/quickstart)
-    - [`gcloud` CLI](https://cloud.google.com/sdk/gcloud) (command-line interface)
-    - [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet)
-
-1. Cloud build-relevant product pages
-    - [Cloud Buildpacks announcement](https://cloud.google.com/blog/products/containers-kubernetes/google-cloud-now-supports-buildpacks)
-    - [Cloud Buildpacks repo](https://github.com/GoogleCloudPlatform/buildpacks)
-    - [Cloud Artifact Registry home page](https://cloud.google.com/artifact-registry)
-    - [Cloud Artifact Registry documentation](https://cloud.google.com/artifact-registry/docs)
-
-1. Google AI/ML API product pages
-    - [Cloud Translation home page](https://cloud.google.com/translate)
-    - [Cloud Translation documentation](https://cloud.google.com/translate/docs)
-    - [Cloud Translation Node.js client library (v3)](https://cloud.google.com/translate/docs/reference/libraries/v3/nodejs)
-    - [Cloud Translation Node.js client library (v2)](https://cloud.google.com/translate/docs/reference/libraries/v2/nodejs)
-    - [Translation API pricing page](https://cloud.google.com/translate/pricing)
-    - [All Cloud AI/ML "building block" APIs](https://web.archive.org/web/20210308144225/https://cloud.google.com/products/ai/building-blocks)
-    - [Google ML Kit (Cloud AI/ML API subset for mobile)](https://developers.google.com/ml-kit)
-    - [Google ML Kit Translation API](https://developers.google.com/ml-kit/language/translation)
-
-1. Other Google Cloud documentation
-    - [Google Cloud Node.js support](https://cloud.google.com/nodejs)
-    - [Google Cloud client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries)
-    - [Google Cloud "Always Free" tier](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits)
-    - [All Google Cloud documentation](https://cloud.google.com/docs)
-
-1. External links
-    - [Express.js](https://expressjs.com)
-    - [CNCF Buildpacks open spec](https://buildpacks.io)
+- [Node.js App Engine quickstart](https://cloud.google.com/appengine/docs/standard/nodejs/quickstart)
+- [Nodejs App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/nodejs/runtime)
+- [Node.js Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-nodejs)
+- [Node.js Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/nodejs)
+- [Express.js](https://expressjs.com)
 
 
 ## Testing

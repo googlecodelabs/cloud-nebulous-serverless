@@ -3,7 +3,7 @@
 
 ## Description
 
-This is the code repo for a set of codelab tutorials highlighting a ["nebulous" sample app](https://twitter.com/googledevs/status/1433113274984271875?utm_source=twitter&utm_medium=unpaidsoc&utm_campaign=CDR_wes_aap-serverless_mgrcrbdpk_sms_201031&utm_content=-) demonstrating how to access Google Cloud APIs from one of our serverless platforms.
+This is the code repo for a set of codelab tutorials highlighting a ["nebulous" sample app](https://twitter.com/googledevs/status/1433113274984271875?utm_source=twitter&utm_medium=unpaidsoc&utm_campaign=CDR_wes_aap-serverless_mgrcrbdpk_sms_201031&utm_content=-) demonstrating how to access Google Cloud APIs from one of our serverless platforms. There are [Python](python) and [Node.js](nodejs) versions of this app available.
 
 
 ## Inspiration and implementation
@@ -20,12 +20,12 @@ Google Cloud compute platforms feature [default service account credentials](htt
 Check out the documentation for [service accounts](https://cloud.google.com/docs/authentication/getting-started) and [public/private key/pairs](https://cloud.google.com/translate/docs/setup#service_account_and_private_key) as well as the [authentication in production page](https://cloud.google.com/docs/authentication/production) for more information.
 
 
-### Cost
+## Cost
 
 While the Translation API does not explicitly list a free quota on the ["Always Free" tier page](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits), its [pricing page](https://cloud.google.com/translate/pricing#charged-characters) indicates a certain number of [translated characters](https://cloud.google.com/translate/pricing#charged-characters) as a free monthly quota applied as a credit, so long as you stay within that limit, you should not incur any additional charges.
 
 
-### Enable Cloud services used
+## Enable Cloud services used
 
 Once you have a billing account, you can enable the services/APIs for each product used. Go to the Cloud console pages for each respective Cloud product used and enable the service:
 
@@ -39,7 +39,7 @@ Alternatively, you use the [`gcloud` CLI (command-line interface)](https://cloud
 Enable all 4 services with this one `gcloud` command: `gcloud services enable translate.googleapis.com run.googleapis.com cloudfunctions.googleapis.com appengine.googleapis.com`
 
 
-### The application itself
+## The application itself
 
 The app consists of a simple web page prompting the user for a phrase to translate from English to Spanish. The translated results along with the original phrase are presented along with an empty form for a follow-up translation if desired.
 
@@ -54,26 +54,15 @@ This is what the app looks like after completing one translation (Cloud Run vers
     - App Engine
         - [App Engine home page](https://cloud.google.com/appengine)
         - [App Engine documentation](https://cloud.google.com/appengine/docs)
-        - [Python 3 App Engine quickstart](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
-        - [Python 3 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
-        - [Python 2 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
-        - [Default service accounts for App Engine](https://cloud.google.com/appengine/docs/standard/python3/service-account)
+        - [Default service accounts](https://cloud.google.com/appengine/docs/standard/nodejs/service-account)
     - Cloud Functions
         - [Cloud Functions home page](https://cloud.google.com/functions)
         - [Cloud Functions documentation](https://cloud.google.com/functions/docs)
-        - [Python Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-python)
-        - [Default service accounts for Cloud Functions](https://cloud.google.com/functions/docs/concepts/iam#access_control_for_service_accounts)
+        - [Default service accounts](https://cloud.google.com/functions/docs/concepts/iam#access_control_for_service_accounts)
     - Cloud Run
         - [Cloud Run home page](https://cloud.run)
         - [Cloud Run documentation](https://cloud.google.com/run/docs)
-        - [Python Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
-        - [Default service accounts for Cloud Run](https://cloud.google.com/run/docs/securing/service-identity)
-
-1. App Engine migration between runtimes/platforms
-    - [Differences between Python 2 &amp; 3 App Engine (Standard) runtimes](https://cloud.google.com/appengine/docs/standard/runtimes)
-    - [Python 2 to 3 App Engine (Standard) migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
-    - [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-rundocker) (Docker)
-    - [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-runbldpks) (Cloud Buildpacks)
+        - [Default service accounts](https://cloud.google.com/run/docs/securing/service-identity)
 
 1. Cloud SDK and `gcloud` product pages
     - [Cloud SDK](https://cloud.google.com/sdk)
@@ -104,7 +93,6 @@ This is what the app looks like after completing one translation (Cloud Run vers
     - [All Google Cloud documentation](https://cloud.google.com/docs)
 
 1. External links
-    - [Flask](https://flask.palletsprojects.com)
     - [Docker](https://docker.com)
     - [`Dockerfile` documentation](https://docs.docker.com/engine/reference/builder)
     - [`Dockerfile` best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices)

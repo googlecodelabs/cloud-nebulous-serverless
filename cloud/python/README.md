@@ -8,6 +8,17 @@ While the majority of this app's deployments are in Python 3, there are still us
 - Neither Cloud Functions nor Cloud Run with Cloud Buildpacks support Python 2.
 
 
+## Codelab links
+
+Deployment | Python 2 | Python 3
+--- | --- | ---
+Local/hosted Flask|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-flask?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservflask_sms_201020&utm_content=-)|_same as Python 2_
+App Engine|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae2_sms_201020&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gae3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgae3_sms_201020&utm_content=-)
+Cloud Functions| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcf?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcf_sms_201020&utm_content=-)
+Cloud Run (Docker)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr2?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr2_sms_201020&utm_content=-)|[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcr3?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcr3_sms_201020&utm_content=-)
+Cloud Run (Buildpacks)| _N/A_ |[codelab](https://codelabs.developers.google.com/codelabs/cloud-nebulous-serverless-python-gcrbp?utm_source=codelabs&utm_medium=et&utm_campaign=CDR_wes_aap-serverless_nebservgcrbp_sms_201020&utm_content=-)
+
+
 ## Deployments and their files
 
 These are the files provided in this repo and the deployments they're applicable to:
@@ -24,7 +35,7 @@ These are the files provided in this repo and the deployments they're applicable
 Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (see above) while the table beneath spells out the details. No administrative files are listed.
 
 
-## **Local Flask server (Python 2)**
+## **Local Flask server (Python 2)** ([codelab link](
 
 **TL;DR:** application files (`main.py` &amp; `requirements.txt`) plus `credentials.json`
 
@@ -218,66 +229,18 @@ Instructions:
 
 ## References
 
-1. Google Cloud serverless product pages
-    - App Engine
-        - [App Engine home page](https://cloud.google.com/appengine)
-        - [App Engine documentation](https://cloud.google.com/appengine/docs)
-        - [Python 3 App Engine quickstart](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
-        - [Python 3 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
-        - [Python 2 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
-        - [Default service accounts for App Engine](https://cloud.google.com/appengine/docs/standard/python3/service-account)
-    - Cloud Functions
-        - [Cloud Functions home page](https://cloud.google.com/functions)
-        - [Cloud Functions documentation](https://cloud.google.com/functions/docs)
-        - [Python Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-python)
-        - [Default service accounts](https://cloud.google.com/functions/docs/concepts/iam#access_control_for_service_accounts)
-    - Cloud Run
-        - [Cloud Run home page](https://cloud.run)
-        - [Cloud Run documentation](https://cloud.google.com/run/docs)
-        - [Python Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
-        - [Default service accounts](https://cloud.google.com/run/docs/securing/service-identity)
+These are relevant links only to the app in this folder (for all others, see the [README one level up](../README.md):
 
-1. App Engine migration between runtimes/platforms
-    - [Differences between Python 2 &amp; 3 App Engine (Standard) runtimes](https://cloud.google.com/appengine/docs/standard/runtimes)
-    - [Python 2 to 3 App Engine (Standard) migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
-    - [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-rundocker) (Docker)
-    - [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-runbldpks) (Cloud Buildpacks)
-
-1. Cloud SDK and `gcloud` product pages
-    - [Cloud SDK](https://cloud.google.com/sdk)
-    - [Cloud SDK installation](https://cloud.google.com/sdk/docs/quickstart)
-    - [`gcloud` CLI](https://cloud.google.com/sdk/gcloud) (command-line interface)
-    - [`gcloud` cheatsheet](https://cloud.google.com/sdk/docs/cheatsheet)
-
-1. Cloud build-relevant product pages
-    - [Cloud Buildpacks announcement](https://cloud.google.com/blog/products/containers-kubernetes/google-cloud-now-supports-buildpacks)
-    - [Cloud Buildpacks repo](https://github.com/GoogleCloudPlatform/buildpacks)
-    - [Cloud Artifact Registry home page](https://cloud.google.com/artifact-registry)
-    - [Cloud Artifact Registry documentation](https://cloud.google.com/artifact-registry/docs)
-
-1. Google AI/ML API product pages
-    - [Cloud Translation home page](https://cloud.google.com/translate)
-    - [Cloud Translation documentation](https://cloud.google.com/translate/docs)
-    - [Cloud Translation Python client library (v3 for 3.x)](https://cloud.google.com/translate/docs/reference/libraries/v3/python)
-    - [Cloud Translation Python client library (v2 for 2.x)](https://cloud.google.com/translate/docs/reference/libraries/v2/python)
-    - [Translation API pricing page](https://cloud.google.com/translate/pricing)
-    - [All Cloud AI/ML "building block" APIs](https://web.archive.org/web/20210308144225/https://cloud.google.com/products/ai/building-blocks)
-    - [Google ML Kit (Cloud AI/ML API subset for mobile)](https://developers.google.com/ml-kit)
-    - [Google ML Kit Translation API](https://developers.google.com/ml-kit/language/translation)
-
-1. Other Google Cloud documentation
-    - [Google Cloud Python support](https://cloud.google.com/python)
-    - [Google Cloud client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries)
-    - [Google Cloud "Always Free" tier](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits)
-    - [All Google Cloud documentation](https://cloud.google.com/docs)
-
-1. External links
-    - [Flask](https://flask.palletsprojects.com)
-    - [Docker](https://docker.com)
-    - [`Dockerfile` documentation](https://docs.docker.com/engine/reference/builder)
-    - [`Dockerfile` best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices)
-    - [`Procfile` documentation](https://devcenter.heroku.com/articles/procfile)
-    - [CNCF Buildpacks open spec](https://buildpacks.io)
+- [Python 3 App Engine quickstart](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
+- [Python 3 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
+- [Python 2 App Engine (Standard) runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
+- [Python Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-python)
+- [Python Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
+- [Differences between Python 2 &amp; 3 App Engine (Standard) runtimes](https://cloud.google.com/appengine/docs/standard/runtimes)
+- [Python 2 to 3 App Engine (Standard) migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
+- [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-rundocker) (Docker)
+- [App Engine (Standard) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-runbldpks) (Cloud Buildpacks)
+- [Flask](https://flask.palletsprojects.com)
 
 
 ## Testing
