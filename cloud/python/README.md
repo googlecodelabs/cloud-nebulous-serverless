@@ -6,7 +6,7 @@ While the majority of this app's deployments are in Python 3, there are still us
 
 - For local or Cloud Run deployments, there are little/no updates to go from Python 2 to 3.
 - Neither Cloud Functions nor Cloud Run with Cloud Buildpacks support Python 2.
-- There is also an [equivalent Node.js version](,,/nodejs) of this app.
+- There is also an [equivalent Node.js version](../nodejs) of this app.
 
 
 ## Codelab links

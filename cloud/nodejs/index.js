@@ -36,9 +36,15 @@ if (!process.env.FUNCTION_TARGET) {
     );
 }
 
+/**
+ * main handler - show form and possibly previous translation
+ */
 async function translate(req, rsp) {
+    // reset all variables (GET/POST)
     let text = null;
     let translated = null;
+
+    // form submission and if there is data to process (POST)
     if (req.method === 'POST') {
         text = req.body.text.trim();
         if (text) {
@@ -51,6 +57,8 @@ async function translate(req, rsp) {
             translated = response.translations[0].translatedText;
         }
     }
+
+    // create context & render template
     const context = {
         orig:  {text: text, lc: SOURCE},
         trans: {text: translated, lc: TARGET}

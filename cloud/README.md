@@ -25,7 +25,7 @@ Check out the documentation for [service accounts](https://cloud.google.com/docs
 While the Translation API does not explicitly list a free quota on the ["Always Free" tier page](https://cloud.google.com/free/docs/gcp-free-tier#free-tier-usage-limits), its [pricing page](https://cloud.google.com/translate/pricing#charged-characters) indicates a certain number of [translated characters](https://cloud.google.com/translate/pricing#charged-characters) as a free monthly quota applied as a credit, so long as you stay within that limit, you should not incur any additional charges.
 
 
-## Enable Cloud services used
+## Enable Google Cloud services used
 
 Once you have a billing account, you can enable the services/APIs for each product used. Go to the Cloud console pages for each respective Cloud product used and enable the service:
 

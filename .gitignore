@@ -2,6 +2,7 @@
 *.py[cod]
 __pycache__/
 /setup.cfg
+settings.py
 
 # JavaScript/Node.js
 node_modules*

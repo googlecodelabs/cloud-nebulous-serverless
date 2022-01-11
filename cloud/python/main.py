@@ -33,7 +33,7 @@ def translate(gcf_request=None):
     # (use gcf_request for GCF but flask.request otherwise)
     local_request = gcf_request if gcf_request else request
 
-    # reset all variables (GET)
+    # reset all variables (GET/POST)
     text = translated = None
 
     # form submission and if there is data to process (POST)
