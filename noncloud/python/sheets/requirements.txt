@@ -1,0 +1,4 @@
+#gunicorn
+flask
+#google-auth<2.0dev
+google-api-python-client #<1.12.0

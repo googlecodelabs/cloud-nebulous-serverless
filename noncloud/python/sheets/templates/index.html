@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><title>Student Information</title><body>
+<style>
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: #DDDDDD;
+}
+table, th, td {
+  border: 1px solid black;
+  padding: 4px;
+  border-collapse: collapse;
+}
+</style>
+<h2>Student Information</h2>
+
+<table>
+<tr>
+<th>
+    #
+</th>
+{% for col in headers %}
+<th>
+    {{ col }}
+</th>
+{% endfor %}
+</tr>
+
+{% for student in students %}
+    <tr>
+    <td>
+        {{ loop.index }}
+    </td>
+    {% for col in student %}
+        <td>
+            {{ col }}
+        </td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+</table>
+
+</body></html>
