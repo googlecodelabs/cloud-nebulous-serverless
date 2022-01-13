@@ -9,13 +9,14 @@ The Node.js version of this app and its deployments are simpler than the [Python
 
 File | Description
 --- | ---
-[`index.js`](index.js)|main application file
-[`templates/index.html`](templates/index.html)|application HTML template
-[`package.json`](package.json)|3rd-party package requirements file
-[`app.yaml`](app.yaml)|App Engine configuration file (only for App Engine deployments)
-`credentials.json`|service account public/private key-pair (only for running locally)
-[`.gcloudignore`](.gcloudignore)|files to exclude deploying to the cloud (administrative)
-`README.md`|this file (administrative)
+[`index.js`](index.js) | main application file
+[`templates/index.html`](templates/index.html) | application HTML template
+[`package.json`](package.json) | 3rd-party package requirements file
+[`app.yaml`](app.yaml) | App Engine configuration file (only for App Engine deployments)
+[`test/test_neb.js`](test/test_neb.js) |  unit tests (`mocha` &amp; `supertest`)
+`credentials.json` | service account public/private key-pair (only for running locally)
+[`.gcloudignore`](.gcloudignore) | files to exclude deploying to the cloud (administrative)
+`README.md` | this file (administrative)
 
 Below are the required settings and instructions for all (documented) deployments; administrative files are not discussed. The `app.yaml` and `credentials.json` files are only used for specific deployments and can be deleted for the others. More regarding `credentials.json`: if/when not provided in Google Cloud deployments, all compute platforms (including serverless) use [default service accounts](https://cloud.google.com/iam/docs/service-accounts#default) which provide a broad set of permissions to assist you in getting a working prototype. When preparing to launch to production, Google Cloud team recommends the best practice of "least privileges," and utilize [user-managed service accounts](https://cloud.google.com/iam/docs/service-accounts#user-managed) with the minimal set of permissions allowing your app to function properly.
 

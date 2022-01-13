@@ -9,8 +9,9 @@
 .gcloudignore
 
 # JavaScript/Node.js
-node_modules*
+node_modules/
 test/
+#package-lock.json
 
 # Source code control files
 .git/
