@@ -2,7 +2,7 @@
 
 ## Description
 
-This simple app uses the [Google Sheets API](https://developers.google.com/sheets) to read the display the contents of a [public spreadsheet in the Sheets API documentation](https://developers.google.com/sheets/api/quickstart/python). The output looks like the following when running locally (or deployed to the cloud):
+This simple app uses the [Google Sheets API](https://developers.google.com/sheets) to read the display the contents of a [public spreadsheet](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view) in the [Sheets API documentation](https://developers.google.com/sheets/api/quickstart/python). The output looks like the following when running locally (or deployed to the cloud):
 ![students web app](https://user-images.githubusercontent.com/1102504/149280036-a5ed50cf-70e0-464f-95c1-3c81ddab92d6.png)
 
 
@@ -13,7 +13,9 @@ This sample is offered in Python 3, but the code itself is Python 2-compatible. 
 
 ## Security
 
-The app uses [service account authentication](https://cloud.google.com/iam/docs/service-accounts) and [service account public/private key-pair with the appropriate IAM permissions](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) for authorization for ease-of-use. However, since Google Sheets documents are typically owned by human users, this can be changed to [end-use/Google account authentication](https://cloud.google.com/docs/authentication/end-user) with [OAuth client IDs](https://developers.google.com/identity/protocols/oauth2) where the data owner must grant the requested scope permissions to the app so it can access their private data.
+The app uses [service account authentication](https://cloud.google.com/iam/docs/service-accounts) and [service account public/private key-pair with the appropriate IAM permissions](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) for authorization. However, since Google Sheets documents are typically owned by human users, this can be changed to [end-use/Google account authentication](https://cloud.google.com/docs/authentication/end-user) with [OAuth client IDs](https://developers.google.com/identity/protocols/oauth2) where the data owner must grant the requested scope permissions to the app so it can access their private data.
+
+To get an idea of what code changes are required, check the `alt` folder in the repo for this [multi-API codelab](http://goo.gle/3nPxmlc) featuring the Google Drive, Cloud Storage, Cloud Vision, and Google Sheets APIs. There are code samples demonstrating OAuth client ID as well as service accounts, old and new Python auth libraries, and the [Google APIs client library](https://developers.google.com/api-client-library) for Python as well as [Google Cloud API client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries).
 
 
 ## Deployments and their files
@@ -28,7 +30,7 @@ File | Description
 [`.gcloudignore`](.gcloudignore) | files to exclude deploying to the cloud (administrative)
 [`noxfile.py`](noxfile.py) |  unit tests `nox` tool setup file
 [`test_sheets.py`](test_sheets.js) |  unit tests (`pytest`)
-[`Procfile`](Procfile) |  "Entrypoint" directive [Procfile](https://devcenter.heroku.com/articles/procfile) to start app (only for Cloud Run deployments using Cloud Buildpacks)
+[`Procfile`](Procfile) |  "Entrypoint" to start app (only for Cloud Run [Cloud Buildpacks] deployments)
 `README.md` | this file (administrative)
 
 Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (see above) while the table beneath spells out the details. No administrative files are listed.
@@ -58,8 +60,8 @@ _Solution_: If this is the case:
 
 **TL;DR:** app files plus `app.yaml`, `appengine_config.py`, and `lib`
 
-1. **Copy** the [Cloud API Python 2 `app.yaml` file](/blob/main/cloud/python/app.yaml)
-1. **Copy** the [Cloud API Python 2 `appengine_config.py` file](/blob/main/cloud/python/appengine_config.py)
+1. **Copy** the [Cloud API Python 2 `app.yaml` file](/cloud/python/app.yaml)
+1. **Copy** the [Cloud API Python 2 `appengine_config.py` file](/cloud/python/appengine_config.py)
 1. **Uncomment/enable** the line for `google-auth` in `requirements.txt`
 1. **Uncomment** "<1.12.0" on the line for `google-api-python-client` in `requirements.txt`
 1. **Run** `pip install -t lib -r requirements.txt` to populate `lib` folder (or `pip2`)
@@ -89,7 +91,7 @@ This deploy will work right out of the box but not if you just followed the abov
 
 **TL;DR:** app files plus `Dockerfile`
 
-1. **Copy** the [Cloud API Python 2 `Dockerfile` file](/blob/main/cloud/python/Dockerfile)
+1. **Copy** the [Cloud API Python 2 `Dockerfile` file](/cloud/python/Dockerfile)
 1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
 
 > **NOTE:** This sample uses the Flask development server by default for prototyping; for production, bundle and deploy a production server like `gunicorn`:
@@ -102,7 +104,7 @@ This deploy will work right out of the box but not if you just followed the abov
 
 **TL;DR:** app files plus `Dockerfile` (nearly identical to Python 2 deployment)
 
-1. **Copy** the [Cloud API Python 2 `Dockerfile` file](/blob/main/cloud/python/Dockerfile)
+1. **Copy** the [Cloud API Python 2 `Dockerfile` file](/cloud/python/Dockerfile)
 1. **Edit** `Dockerfile` and switch the `FROM` entry to the `python:3-slim` base image
 1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
 
@@ -117,7 +119,7 @@ This deploy will work right out of the box but not if you just followed the abov
 
 - The sidebar above pertaining to `gunicorn` and its instructions also apply to Python 3.
 - There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
-- You can also use this shortcut to deploy to Cloud Run:
+- You can also use this shortcut to create an ephemeral version of this repo to deploy to Cloud Run:
     [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
 
 

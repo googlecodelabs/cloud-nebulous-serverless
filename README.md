@@ -3,9 +3,7 @@
 
 ## Description
 
-This is the repo for a set of sample apps and corresponding codelabs (self-paced, hands-on tutorials) demonstrating how to call Google APIs from [Google Cloud serverless compute platforms](https://cloud.google.com/serverless) (App Engine, Cloud Functions, Cloud Run). More on each platform below.
-
-Working wth [Cloud APIs](https://cloud.google.com/apis/docs) differs from non-Cloud Google APIs, so that is how the samples are organized (only [Cloud API samples](cloud) are available currently... _non-Cloud samples are coming soon_). The unique aspect of all of the sample apps is that they can be run locally or deployed to any of the 3 platforms without code changes (it's all done in configuration).
+This is the repo for a set of sample apps and corresponding codelabs (self-paced, hands-on tutorials) demonstrating how to call Google APIs from [Google Cloud serverless compute platforms](https://cloud.google.com/serverless) (App Engine, Cloud Functions, Cloud Run). More on each platform below. Working wth [Cloud APIs](cloud) differs from [non-Cloud Google APIs](noncloud), so that is how the samples are organized. The common aspect of all of sample apps is that they can be run locally or deployed to any of the 3 platforms without code changes (all done in configuration).
 
 
 ## Hosting options
