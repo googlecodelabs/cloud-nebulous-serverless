@@ -1,3 +1,8 @@
+| :boom: ALERT!!             |
+|:---------------------------|
+| This repo will soon be relocating to [GoogleCloudPlatform](https://github.com/GoogleCloudPlatform) as we better organize these code samples! Stay tuned as more info is coming soon. |
+
+
 # Nebulous Google Cloud serverless &amp; API sample applications
 ### Run the same apps locally, on App Engine, Cloud Functions, or Cloud Run
 
