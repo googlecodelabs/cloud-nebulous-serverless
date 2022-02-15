@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><title>Street address geocoder</title><body>
+<style>
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: #DDDDDD;
+}
+table, th, td {
+  border: 1px solid black;
+  padding: 4px;
+  border-collapse: collapse;
+}
+</style>
+<h2>Street address geocoder</h2>
+
+{% if results %}
+    <h4>Location information for "{{ address }}":</h4>
+    {% for loc in results %}
+        {% if loc['latlong'] %}
+            <li><b>Complete address</b>: {{ loc['full_addr'] }}
+            <li><b>Geocode location</b>: {{ loc['latlong'] }} (view in <a
+                href="http://maps.google.com?q={{ loc['latlong'] }}">Google Maps)</a></li>
+            <br clear=all>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <h4>No location found for "{{ address }}"</h4>
+{% endif %}
+
+<h4>Enter another street address for its geocode</i>:</h4>
+<form method="POST">
+    <input name="address" size=48 value="{{ address }}">
+    <input type="submit">
+    </form>
+</body></html>

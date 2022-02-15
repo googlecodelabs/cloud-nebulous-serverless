@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><title>Street address geocoder</title><body>
+<style>
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: #DDDDDD;
+}
+table, th, td {
+  border: 1px solid black;
+  padding: 4px;
+  border-collapse: collapse;
+}
+</style>
+<h2>Street address geocoder</h2>
+
+{% if address %}
+    <h4>Previous address information:</h4>
+    <li><b>Address</b>:  {{ address }}</li>
+    {% if latlong %}
+        <li><b>Complete address</b>: {{ full_addr }}
+        <li><b>Geocode location</b>: {{ latlong }} (view in <a
+            href="http://maps.google.com?q={{ latlong }}">Google Maps)</a></li>
+    {% endif %}
+{% endif %}
+
+<h4>Enter street address for its geocode</i>:</h4>
+<form method="POST">
+    <input name="address" size=48 value="{{ address }}">
+    <input type="submit">
+    </form>
+</body></html>
