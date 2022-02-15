@@ -8,7 +8,7 @@ This simple app uses the [Google Sheets API](https://developers.google.com/sheet
 
 ## Python 3 version (Python 2 compatible)
 
-This sample is offered in Python 3, but the code itself is Python 2-compatible. Instructions on running it under 2.x will leverage the resources of the [Cloud API Python sample](https://github.com/googlecodelabs/cloud-nebulous-serverless/tree/main/cloud/python) which provides a more complete experiencce as it has all configuration available to support 2.x deployments.
+This sample is offered in Python 3, but the code itself is Python 2-compatible. Instructions on running it under 2.x will leverage the resources of the [Cloud API Python sample](cloud/python) which provides a more complete experiencce as it has all configuration available to support 2.x deployments.
 
 
 ## Security
@@ -29,7 +29,7 @@ File | Description
 `credentials.json` | service account public/private key-pair (only for running locally)
 [`.gcloudignore`](.gcloudignore) | files to exclude deploying to the cloud (administrative)
 [`noxfile.py`](noxfile.py) |  unit tests `nox` tool setup file
-[`test_sheets.py`](test_sheets.js) |  unit tests (`pytest`)
+[`test_sheets.py`](test_sheets.py) |  unit tests (`pytest`)
 [`Procfile`](Procfile) |  "Entrypoint" to start app (only for Cloud Run [Cloud Buildpacks] deployments)
 `README.md` | this file (administrative)
 
@@ -91,8 +91,8 @@ This deploy will work right out of the box but not if you just followed the abov
 
 **TL;DR:** app files plus `Dockerfile`
 
-1. **Copy** the [Cloud API Python 2 `Dockerfile` file](/cloud/python/Dockerfile)
-1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. **Copy** the [Cloud API Python 2 `Dockerfile`](/cloud/python/Dockerfile) and [`.dockerignore`](/cloud/python/.dockerignore) files.
+1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy, or simply `gcloud run deploy` for a fully-interactive experience.
 
 > **NOTE:** This sample uses the Flask development server by default for prototyping; for production, bundle and deploy a production server like `gunicorn`:
 >    1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
@@ -104,9 +104,9 @@ This deploy will work right out of the box but not if you just followed the abov
 
 **TL;DR:** app files plus `Dockerfile` (nearly identical to Python 2 deployment)
 
-1. **Copy** the [Cloud API Python 2 `Dockerfile` file](/cloud/python/Dockerfile)
+1. **Copy** the [Cloud API Python 2 `Dockerfile`](/cloud/python/Dockerfile) and [`.dockerignore`](/cloud/python/.dockerignore) files.
 1. **Edit** `Dockerfile` and switch the `FROM` entry to the `python:3-slim` base image
-1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy, or simply `gcloud run deploy` for a fully-interactive experience.
 
 - The sidebar above pertaining to `gunicorn` and its instructions also apply to Python 3.
 
@@ -115,7 +115,7 @@ This deploy will work right out of the box but not if you just followed the abov
 
 **TL;DR:** app files plus [`Procfile`](https://devcenter.heroku.com/articles/procfile)
 
-1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
+1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed --source .` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy, or simply `gcloud run deploy` for a fully-interactive experience.
 
 - The sidebar above pertaining to `gunicorn` and its instructions also apply to Python 3.
 - There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
