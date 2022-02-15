@@ -19,7 +19,7 @@ File | Description
 [`app.yaml`](app.yaml) | App Engine configuration file (only for App Engine deployments)
 [`.gcloudignore`](.gcloudignore) | files to exclude deploying to the cloud (administrative)
 [`noxfile.py`](noxfile.py) |  unit tests `nox` tool setup file
-[`test_sheets.py`](test_sheets.js) |  unit tests (`pytest`)
+[`test_sheets.py`](test_sheets.py) |  unit tests (`pytest`)
 [`Procfile`](Procfile) |  "Entrypoint" directive [Procfile](https:/tmp/devcenter.heroku.com/articles/procfile) to start app (only for Cloud Run deployments using Cloud Buildpacks)
 `README.md` | this file (administrative)
 
