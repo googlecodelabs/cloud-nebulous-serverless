@@ -15,9 +15,7 @@ This app shows developers how to use the [Cloud Translation API](https://cloud.g
 
 ## Authentication and authorization: service account credentials (local deployments only)
 
-Google Cloud compute platforms feature [default service account credentials](https://cloud.google.com/iam/docs/service-accounts#default) which are used for these app deployments. However, such credentials are not available when running locally, so users will need to [create a service account key-pair](https://console.cloud.google.com/iam-admin/serviceaccounts/create) then download the credentials JSON file when prompted. You can typically call it anything you like, but the sample apps use `credentials.json`. When deploying to the cloud however, please "delete" these credentials so you don't upload that file to the cloud.
-
-Check out the documentation for [service accounts](https://cloud.google.com/docs/authentication/getting-started) and [public/private key/pairs](https://cloud.google.com/translate/docs/setup#service_account_and_private_key) as well as the [authentication in production page](https://cloud.google.com/docs/authentication/production) for more information.
+Google Cloud compute platforms feature [default service account credentials](https://cloud.google.com/iam/docs/service-accounts#default) which are used for these app deployments. However, such credentials are not available when running locally, so users will need to **run** `gcloud auth application-default login` before starting the server.
 
 
 ## Cost

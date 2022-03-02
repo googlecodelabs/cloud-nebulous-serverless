@@ -14,21 +14,20 @@ File | Description
 [`package.json`](package.json) | 3rd-party package requirements file
 [`app.yaml`](app.yaml) | App Engine configuration file (only for App Engine deployments)
 [`test/test_neb.js`](test/test_neb.js) |  unit tests (`mocha` &amp; `supertest`)
-`credentials.json` | service account public/private key-pair (only for running locally)
 [`.gcloudignore`](.gcloudignore) | files to exclude deploying to the cloud (administrative)
 `README.md` | this file (administrative)
 
-Below are the required settings and instructions for all (documented) deployments; administrative files are not discussed. The `app.yaml` and `credentials.json` files are only used for specific deployments and can be deleted for the others. More regarding `credentials.json`: if/when not provided in Google Cloud deployments, all compute platforms (including serverless) use [default service accounts](https://cloud.google.com/iam/docs/service-accounts#default) which provide a broad set of permissions to assist you in getting a working prototype. When preparing to launch to production, Google Cloud team recommends the best practice of "least privileges," and utilize [user-managed service accounts](https://cloud.google.com/iam/docs/service-accounts#user-managed) with the minimal set of permissions allowing your app to function properly.
+Below are the required settings and instructions for all (documented) deployments; administrative files are not discussed. The `app.yaml` file is only used for specific deployments and can be deleted for the others.
 
-If you do not know what `credentials.json` is or how to get one, please see [this section in the above README](../README.md#authentication-and-authorization-service-account-credentials-local-deployments-only).
+> NOTE: Serverless deployments (as configured here) use [default service accounts](https://cloud.google.com/iam/docs/service-accounts#default) which provide a broad set of permissions to assist you in getting a working prototype. When preparing to launch to production, Google Cloud team recommends the best practice of "least privileges," and instead use [user-managed service accounts](https://cloud.google.com/iam/docs/service-accounts#user-managed) with the minimal set of permissions allowing your app to function properly.
 
 
 ## **Local Express server (Node 10, 17)**
 
-**TL;DR:** application files (`index.js` &amp; `package.json`) plus `credentials.json`. Instructions:
+**TL;DR:** application files (`index.js` &amp; `package.json`). Instructions:
 
-1. **Create service account key**, download key file as `credentials.json` in working directory, and set `GOOGLE_APPLICATION_CREDENTIALS` environment variable pointing to it; more about this [here](https://cloud.google.com/docs/authentication/production#manually)
 1. **Run** `npm install` (to install packages locally)
+1. **Run** `gcloud auth application-default login` to set your credentials
 1. **Run** `npm start` to run locally
 
 
@@ -123,7 +122,4 @@ DONE
 ```
 *(hangs here)*
 
-If this happens to you, it is because you missed doing one of the following:
-
-- Created a public/private keypair and downloaded the key file as `credentials.json` in working directory
-- Set your application default credentials (`GOOGLE_APPLICATION_CREDENTIALS` environment variable) to point to `credentials.json`
+If this happens to you, **run** `gcloud auth application-default login` to set your credentials and try again.

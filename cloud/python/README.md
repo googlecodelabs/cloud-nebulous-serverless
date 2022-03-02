@@ -38,12 +38,11 @@ Below are the required settings and instructions for all documented deployments.
 
 ## **Local Flask server (Python 2)**
 
-**TL;DR:** application files (`main.py` &amp; `requirements.txt`) plus `credentials.json`
+**TL;DR:** application files (`main.py` &amp; `requirements.txt`)
 
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**create** (if necessary) **and use** per instructions below
 `app.yaml`|_unused_ (delete or leave as-is)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
@@ -53,19 +52,18 @@ File | Description
 
 Instructions:
 
-1. **Create service account key**, download key file as `credentials.json` in working directory, and set `GOOGLE_APPLICATION_CREDENTIALS` environment variable pointing to it (more [above](#service-account-credentials-local-only) and [here](https://cloud.google.com/docs/authentication/production#manually))
 1. **Run** `pip install -U pip -r requirements.txt` to install/update packages locally (or `pip2`)
+1. **Run** `gcloud auth application-default login` to set your credentials
 1. **Run** `python main.py` to run on local Flask server (or `python2`)
 
 
 ## **Local Flask server (Python 3)**
 
-**TL;DR:** app files plus `credentials.json` (identical to Python 2 deployment)
+**TL;DR:** app files (identical to Python 2 deployment)
 
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**create** (if necessary) **and use** per instructions below
 `app.yaml`|_unused_ (delete or leave as-is)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
@@ -75,9 +73,8 @@ File | Description
 
 Instructions:
 
-1. **Reuse** existing `credentials.json` or create new one per Python 2 instructions above
 1. **Run** `pip install -U pip -r requirements.txt` to install/update packages locally (or `pip3`)
-    - While you can reuse `credentials.json` from Python 2, you must still install the packages for Python 3.
+1. **Run** `gcloud auth application-default login` to set your credentials
 1. **Run** `python main.py` to run on local Flask server (or `python3`)
 
 
@@ -88,7 +85,6 @@ Instructions:
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|**use as-is** from repo (ensure `#runtime:python39` commented out)
 `appengine_config.py`|**use as-is** from repo
 `requirements.txt`|**use as-is** to install packages locally (see below) but _unused_ thereafter
@@ -98,7 +94,6 @@ File | Description
 
 Instructions:
 
-1. **Delete** `credentials.json` (see above)
 1. **Run** `pip install -t lib -r requirements.txt` to populate `lib` folder (or `pip2`)
 1. **Run** `gcloud app deploy` to deploy to Python 2 App Engine
 
@@ -110,7 +105,6 @@ Instructions:
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|**uncomment** `runtime:python39` (or Python 3.7 or 3.8); **delete** all other lines
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
@@ -120,7 +114,7 @@ File | Description
 
 Instructions:
 
-1. **Edit** `app.yaml` and **delete** `credentials.json` and `lib` (see above)
+1. **Edit** `app.yaml` (see above); optionally **delete** `lib` and `appengine_config.py` (unused)
 1. **Run** `gcloud app deploy` to deploy to Python 3 App Engine
 
 
@@ -131,7 +125,6 @@ Instructions:
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
@@ -141,7 +134,7 @@ File | Description
 
 Instructions:
 
-1. **Delete** `credentials.json` and `lib` (see above)
+1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Run** `gcloud functions deploy translate --runtime python39 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (or Python 3.7 or 3.8)
     - That command creates &amp; deploys a new HTTP-triggered Cloud Function (name must match what's in `main.py`)
 1. There is no support for Python 2 with Cloud Functions
@@ -154,7 +147,6 @@ Instructions:
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**uncomment** `grpcio==1.39.0`
@@ -164,7 +156,7 @@ File | Description
 
 Instructions:
 
-1. **Delete** `credentials.json` and `lib` (see above)
+1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Edit** `requirements.txt` to specify final version of `grpcio` supporting Python 2
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry), and finally `docker run` to deploy the service, all in one convenient command.
@@ -183,7 +175,6 @@ Instructions:
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
@@ -193,7 +184,8 @@ File | Description
 
 Instructions:
 
-1. **Edit** `Dockerfile` and **delete** `credentials.json` and `lib` (see above)
+1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
+1. **Edit** `Dockerfile` (see above)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
 1. The shortcut "button" above can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
 1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
@@ -209,7 +201,6 @@ Instructions:
 File | Description
 --- | ---
 `main.py`|**use as-is** from repo
-`credentials.json`|**delete** (or rename) if it exists (default credentials used in the cloud)
 `app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
 `requirements.txt`|**use as-is** from repo
@@ -219,7 +210,8 @@ File | Description
 
 Instructions:
 
-1. **Delete** `Dockerfile`, `credentials.json`, and `lib` (see above)
+1. **Delete** `Dockerfile` (or rename it)
+1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--region REGION` for non-interactive deploy
 1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
