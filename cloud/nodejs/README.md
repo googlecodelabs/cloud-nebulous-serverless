@@ -19,7 +19,7 @@ File | Description
 
 Below are the required settings and instructions for all (documented) deployments; administrative files are not discussed. The `app.yaml` file is only used for specific deployments and can be deleted for the others.
 
-> NOTE: Serverless deployments (as configured here) use [default service accounts](https://cloud.google.com/iam/docs/service-accounts#default) which provide a broad set of permissions to assist you in getting a working prototype. When preparing to launch to production, Google Cloud team recommends the best practice of "least privileges," and instead use [user-managed service accounts](https://cloud.google.com/iam/docs/service-accounts#user-managed) with the minimal set of permissions allowing your app to function properly.
+> NOTE: Serverless deployments (as configured here) use [default service accounts](https://cloud.google.com/iam/docs/service-accounts#default) which provide a broad set of permissions to assist you in getting a working prototype. When preparing to launch to production, the Google Cloud team recommends the best practice of "least privileges," and instead use [user-managed service accounts](https://cloud.google.com/iam/docs/service-accounts#user-managed) with the minimal set of permissions allowing your app to function properly.
 
 
 ## **Local Express server (Node 10, 17)**

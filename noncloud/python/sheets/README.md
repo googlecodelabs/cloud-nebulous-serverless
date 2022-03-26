@@ -2,7 +2,7 @@
 
 ## Python 3 version (Python 2 compatible)
 
-This sample is offered in Python 3, but the code itself is Python 2-compatible. Instructions on running it under 2.x will leverage the resources of the [Cloud API Python sample](https:/tmp/github.com/googlecodelabs/cloud-nebulous-serverless/tree/main/cloud/python) which provides a more complete experiencce as it has all configuration available to support 2.x deployments.
+This sample is offered in Python 3, but the code itself is Python 2-compatible. Instructions on running it under 2.x will leverage the resources of the [Cloud API Python sample](https://github.com/googlecodelabs/cloud-nebulous-serverless/tree/main/cloud/python) which provides a more complete experiencce as it has all configuration available to support 2.x deployments.
 
 > NOTES:
 > - For local or Cloud Run deployments, there are little/no updates to go from Python 2 to 3.
@@ -20,13 +20,13 @@ File | Description
 [`.gcloudignore`](.gcloudignore) | files to exclude deploying to the cloud (administrative)
 [`noxfile.py`](noxfile.py) |  unit tests `nox` tool setup file
 [`test_sheets.py`](test_sheets.py) |  unit tests (`pytest`)
-[`Procfile`](Procfile) |  "Entrypoint" directive [Procfile](https:/tmp/devcenter.heroku.com/articles/procfile) to start app (only for Cloud Run deployments using Cloud Buildpacks)
+[`Procfile`](Procfile) |  "Entrypoint" directive [Procfile](https://devcenter.heroku.com/articles/procfile) to start app (only for Cloud Run deployments using Cloud Buildpacks)
 `README.md` | this file (administrative)
 
 Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (see above) while the table beneath spells out the details. No administrative files are listed.
 
 
-## **Local [Flask](https:/tmp/flask.palletsprojects.com) server (Python 2 or 3)**
+## **Local [Flask](https://flask.palletsprojects.com) server (Python 2 or 3)**
 
 **TL;DR:** application files (`main.py` &amp; `requirements.txt`)
 
@@ -77,7 +77,7 @@ _Solution_: If this is the case:
 
 ## **Cloud Run (Python 3 via Cloud Buildpacks)**
 
-**TL;DR:** app files plus [`Procfile`](https:/tmp/devcenter.heroku.com/articles/procfile)
+**TL;DR:** app files plus [`Procfile`](https://devcenter.heroku.com/articles/procfile)
 
 1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--source . --region REGION` for non-interactive deploy
 
@@ -110,28 +110,35 @@ _Solution_: If this is the case:
 - The `gunicorn` sidebar above also applies here.
 
 
-## Google references
+## Resources
 
 These are relevant links only to the app in this folder (for all others, see the [README one level up](../README.md):
 
-- [Google APIs client library for Python](https://github.com/googleapis/google-api-python-client)
+### Google Sheets API and platform client library
+
 - [Google Sheets API home page](https://developers.google.com/sheets)
-- [Google Sheets API videos](https://developers.google.com/sheets/api/videos) (Python or [Apps Script](https://developers.google.com/apps-script) [JavaScript])
+- [Google Sheets API Python QuickStart](https://developers.google.com/sheets/api/quickstart/python) (origin of the student spreadsheet)
 - [Google Sheets API intro codelab](http://g.co/codelabs/sheets) (Node.js)
-- [Python 3 App Engine quickstart](https:/tmp/cloud.google.com/appengine/docs/standard/python3/quickstart)
-- [Python 3 App Engine (standard environment) runtime](https:/tmp/cloud.google.com/appengine/docs/standard/python3/runtime)
-- [Python 2 App Engine (standard environment) runtime](https:/tmp/cloud.google.com/appengine/docs/standard/python/runtime)
-- [Differences between Python 2 &amp; 3 App Engine (standard environment) runtimes](https:/tmp/cloud.google.com/appengine/docs/standard/runtimes)
-- [Python 2 to 3 App Engine (standard environment) migration guide](http:/tmp/cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
-- [Python Cloud Functions quickstart](https:/tmp/cloud.google.com/functions/docs/quickstart-python)
-- [Python Cloud Run quickstart](https:/tmp/cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
-- [App Engine (standard environment) to Cloud Run codelab tutorial](http:/tmp/g.co/codelabs/pae-migrate-rundocker) (via Docker)
-- [App Engine (standard environment) to Cloud Run codelab tutorial](http:/tmp/g.co/codelabs/pae-migrate-runbldpks) (no Docker/`Dockerfile` via Cloud Buildpacks)
+- [Google Sheets API videos](https://developers.google.com/sheets/api/videos) (Python or [Apps Script](https://developers.google.com/apps-script) [JavaScript])
+- [Google APIs client library for Python](https://github.com/googleapis/google-api-python-client)
+
+
+### Google Cloud serverless platforms
+
+- [Python Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-python)
+- [Python Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
+- [Python 3 App Engine quickstart](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
+- [Python 3 App Engine (standard environment) runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
+- [Python 2 App Engine (standard environment) runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
+- [Differences between Python 2 &amp; 3 App Engine (standard environment) runtimes](https://cloud.google.com/appengine/docs/standard/runtimes)
+- [Python 2 to 3 App Engine (standard environment) migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
+- [App Engine (standard environment) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-rundocker) (via Docker)
+- [App Engine (standard environment) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-runbldpks) (no Docker/`Dockerfile` via Cloud Buildpacks)
 
 
 ## Testing
 
-Testing is driven by [`nox`](http:/tmp/nox.thea.codes) which uses [`pytest`](https:/tmp/pytest.org) for testing and [`flake8`](https:/tmp/flake8.pycqa.org) for linting, installing both in virtual environments along with application dependencies, `flask` and `google-api-python-client`, and finally, [`blinker`](https://pythonhosted.org/blinker), a signaling framework integrated into Flask. To run the lint and unit tests (testing `GET` and `POST` requests), install `nox` (with the expected `pip install -U nox`) and run it from the command line in the application folder and ensuring `noxfile.py` is present.
+Testing is driven by [`nox`](http://nox.thea.codes) which uses [`pytest`](https://pytest.org) for testing and [`flake8`](https://flake8.pycqa.org) for linting, installing both in virtual environments along with application dependencies, `flask` and `google-api-python-client`, and finally, [`blinker`](https://pythonhosted.org/blinker), a signaling framework integrated into Flask. To run the lint and unit tests (testing `GET` and `POST` requests), install `nox` (with the expected `pip install -U nox`) and run it from the command line in the application folder and ensuring `noxfile.py` is present.
 
 
 ### Expected output

@@ -35,6 +35,8 @@ These are the files provided in this repo and the deployments they're applicable
 
 Below are the required settings and instructions for all documented deployments. The "**TL:DR;**" section at the top of each configuration summarizes the key files (see above) while the table beneath spells out the details. No administrative files are listed.
 
+> NOTE: Serverless deployments (as configured here) use [default service accounts](https://cloud.google.com/iam/docs/service-accounts#default) which provide a broad set of permissions to assist you in getting a working prototype. When preparing to launch to production, the Google Cloud team recommends the best practice of "least privileges," and instead use [user-managed service accounts](https://cloud.google.com/iam/docs/service-accounts#user-managed) with the minimal set of permissions allowing your app to function properly.
+
 
 ## **Local Flask server (Python 2)**
 
