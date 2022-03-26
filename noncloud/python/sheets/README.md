@@ -57,8 +57,8 @@ _Solution_: If this is the case:
 
 **TL;DR:** app files plus `app.yaml`, `appengine_config.py`, and `lib`
 
-1. **Copy** the [Cloud API Python 2 `app.yaml` file](/blob/main/cloud/python/app.yaml)
-1. **Copy** the [Cloud API Python 2 `appengine_config.py` file](/blob/main/cloud/python/appengine_config.py)
+1. **Copy** the [Cloud API Python 2 `app.yaml` file](/cloud/python/app.yaml)
+1. **Copy** the [Cloud API Python 2 `appengine_config.py` file](/cloud/python/appengine_config.py)
 1. **Uncomment/enable** the line for `google-auth` in `requirements.txt`
 1. **Uncomment** "<1.12.0" on the line for `google-api-python-client` in `requirements.txt`
 1. **Run** `pip install -t lib -r requirements.txt` to populate `lib` folder (or `pip2`)
@@ -93,7 +93,7 @@ _Solution_: If this is the case:
 
 **TL;DR:** app files plus `Dockerfile` (nearly identical to Python 2 deployment)
 
-1. **Copy** the [Cloud API Python `Dockerfile` file](/blob/main/cloud/python/Dockerfile)
+1. **Copy** the [Cloud API Python `Dockerfile` file](/cloud/python/Dockerfile)
 1. **Edit** `Dockerfile` and switch the `FROM` entry to the `python:3-slim` base image
 1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--source . --region REGION` for non-interactive deploy
 
@@ -104,7 +104,7 @@ _Solution_: If this is the case:
 
 **TL;DR:** app files plus `Dockerfile`
 
-1. **Copy** the [Cloud API Python `Dockerfile` file](/blob/main/cloud/python/Dockerfile)
+1. **Copy** the [Cloud API Python `Dockerfile` file](/cloud/python/Dockerfile)
 1. **Run** `gcloud run deploy students --allow-unauthenticated --platform managed` to deploy to Cloud Run; optionally add `--source . --region REGION` for non-interactive deploy
 
 - The `gunicorn` sidebar above also applies here.
@@ -120,18 +120,23 @@ These are relevant links only to the app in this folder (for all others, see the
 - [Google Sheets API Python QuickStart](https://developers.google.com/sheets/api/quickstart/python) (origin of the student spreadsheet)
 - [Google Sheets API intro codelab](http://g.co/codelabs/sheets) (Node.js)
 - [Google Sheets API videos](https://developers.google.com/sheets/api/videos) (Python or [Apps Script](https://developers.google.com/apps-script) [JavaScript])
+- [Google Workspace APIs home page](https://developers.google.com/gsuite)
 - [Google APIs client library for Python](https://github.com/googleapis/google-api-python-client)
 
 
 ### Google Cloud serverless platforms
 
-- [Python Cloud Functions quickstart](https://cloud.google.com/functions/docs/quickstart-python)
-- [Python Cloud Run quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
-- [Python 3 App Engine quickstart](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
-- [Python 3 App Engine (standard environment) runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
-- [Python 2 App Engine (standard environment) runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
+- [Google Cloud serverless home page](https://cloud.google.com/serverless)
+- [Cloud Functions home page](https://cloud.google.com/functions)
+- [Cloud Functions Python quickstart](https://cloud.google.com/functions/docs/quickstart-python)
+- [Cloud Run home page](https://cloud.run)
+- [Cloud Run Python quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python)
+- [App Engine home page](https://cloud.google.com/appengine)
+- [App Engine Python 3 quickstart](https://cloud.google.com/appengine/docs/standard/python3/quickstart)
+- [App Engine (standard environment) Python 3 runtime](https://cloud.google.com/appengine/docs/standard/python3/runtime)
+- [App Engine (standard environment) Python 2 runtime](https://cloud.google.com/appengine/docs/standard/python/runtime)
 - [Differences between Python 2 &amp; 3 App Engine (standard environment) runtimes](https://cloud.google.com/appengine/docs/standard/runtimes)
-- [Python 2 to 3 App Engine (standard environment) migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
+- [App Engine (standard environment) Python 2 to 3 migration guide](http://cloud.google.com/appengine/docs/standard/python/migrate-to-python3)
 - [App Engine (standard environment) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-rundocker) (via Docker)
 - [App Engine (standard environment) to Cloud Run codelab tutorial](http://g.co/codelabs/pae-migrate-runbldpks) (no Docker/`Dockerfile` via Cloud Buildpacks)
 
