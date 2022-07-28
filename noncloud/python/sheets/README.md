@@ -2,7 +2,7 @@
 
 ## Python 3 version (Python 2 compatible)
 
-This sample is offered in Python 3, but the code itself is Python 2-compatible. Instructions on running it under 2.x will leverage the resources of the [Cloud API Python sample](https://github.com/googlecodelabs/cloud-nebulous-serverless/tree/main/cloud/python) which provides a more complete experiencce as it has all configuration available to support 2.x deployments.
+This sample is offered in Python 3, but the code itself is Python 2-compatible. Instructions on running it under 2.x will leverage the resources of the [Cloud API Python sample](https://github.com/googlecodelabs/cloud-nebulous-serverless/tree/main/cloud/python) which provides a more complete experience as it has all configuration available to support 2.x deployments.
 
 > NOTES:
 > - For local or Cloud Run deployments, there are little/no updates to go from Python 2 to 3.
@@ -30,7 +30,7 @@ Below are the required settings and instructions for all documented deployments.
 
 **TL;DR:** application files (`main.py` &amp; `requirements.txt`)
 
-1. **Login using [Application Default Credentials](https://cloud.google.com/docs/authentication/production#automatically)**: run the `gcloud auth application-default login` command and ensure you do **not** set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable; also see the [command ference](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login).
+1. **Login using [Application Default Credentials](https://cloud.google.com/docs/authentication/production#automatically)**: run the `gcloud auth application-default login` command and ensure you do **not** set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable; also see the [command reference](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login).
 1. (2.x only) **Uncomment/enable** the line for `google-auth` in `requirements.txt`
 1. **Run** `pip install -U pip -r requirements.txt` to install/update packages locally (or `pip2` for Python 2 or `pip3` for Python 3 explicitly)
 1. **Run** `python main.py` to run on local Flask server (`python2` or `python3` to be explicit)
@@ -72,7 +72,7 @@ _Solution_: If this is the case:
 1. **Run** `gcloud functions deploy students --runtime python39 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (or Python 3.7 or 3.8)
 
 - Cloud Functions does not support Python 2.
-- The Cloud Function name must match the function's name in `main.py` else you need to use [`--entry-point`](https://cloud.google.com/functions/docs/deploying/filesystem).
+- The Cloud Function name must match the function's name in `main.py` else you need to use [`--entry-point`](https://cloud.google.com/functions/docs/deploying/filesystem#deploy_using_the).
 
 
 ## **Cloud Run (Python 3 via Cloud Buildpacks)**
