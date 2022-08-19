@@ -1,4 +1,4 @@
 #gunicorn>=19.10.0
-grpcio<1.40.0
+grpcio<1.40.0; python_version < '3.0'
 flask
 google-cloud-translate

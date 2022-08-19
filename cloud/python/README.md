@@ -157,7 +157,7 @@ File | Description
 `main.py`|**use as-is** from repo
 `app.yaml`|_unused_ (delete or leave as-is; only for App Engine)
 `appengine_config.py`|_unused_ (delete or leave as-is; only for Python 2 App Engine)
-`requirements.txt`|**uncomment** `grpcio<1.40.0`
+`requirements.txt`|`grpcio<1.40.0` applies to this deployment
 `lib`|**delete** (or rename) this folder if it exists (not used with Cloud Run)
 `Dockerfile`|**use as-is** from repo (ensure `#FROM python:3-slim` commented out)
 `Procfile`|_unused_ (delete or leave as-is)
@@ -165,7 +165,6 @@ File | Description
 Instructions:
 
 1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
-1. **Edit** `requirements.txt` to uncomment the `grpcio` line (to use final version supporting Python 2)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry) (must be enabled), and finally `docker run` to deploy the service, all in one convenient command.
     - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line which will give you a full non-interactive deploy
