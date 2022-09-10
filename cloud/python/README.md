@@ -167,7 +167,9 @@ Instructions:
 1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry) (must be enabled), and finally `docker run` to deploy the service, all in one convenient command.
-    - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line which will give you a full non-interactive deploy
+    - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line
+    - You'll be prompted to provide a SOURCE folder unless you also add `--source FOLDER`, e.g., `-source .` on the cmd-line
+    - Supplying both `--region` and `--source` options provide a fully non-interactive deploy (provide you already have a repository, otherwise you'll be prompted to create one)
 1. You can also use this shortcut to deploy to Cloud Run:
     [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
 1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
@@ -196,7 +198,9 @@ Instructions:
 1. **Edit** `Dockerfile` (see above)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry) (must be enabled), and finally `docker run` to deploy the service, all in one convenient command.
-    - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line which will give you a full non-interactive deploy
+    - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line
+    - You'll be prompted to provide a SOURCE folder unless you also add `--source FOLDER`, e.g., `-source .` on the cmd-line
+    - Supplying both `--region` and `--source` options provide a fully non-interactive deploy (provide you already have a repository, otherwise you'll be prompted to create one)
 1. The shortcut "button" above can be customized for Python 3 if you make the `Dockerfile` update above and commit it to your fork/clone.
 1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
@@ -225,7 +229,9 @@ Instructions:
 1. There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry) (must be enabled), and finally `docker run` to deploy the service, all in one convenient command.
-    - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line which will give you a full non-interactive deploy
+    - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line
+    - You'll be prompted to provide a SOURCE folder unless you also add `--source FOLDER`, e.g., `-source .` on the cmd-line
+    - Supplying both `--region` and `--source` options provide a fully non-interactive deploy (provide you already have a repository, otherwise you'll be prompted to create one)
 1. By default, App Engine &amp; Cloud Functions launch production servers; with Cloud Run, the Flask development server is used for prototyping. For production, bundle and deploy a production server like `gunicorn`:
     1. **Uncomment** `gunicorn` from `requirements.txt` (commented out for App Engine &amp; Cloud Functions)
     1. **Uncomment** the `web:` entry for `gunicorn` replacing the default entry in `Procfile`
