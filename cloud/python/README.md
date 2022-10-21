@@ -141,7 +141,7 @@ File | Description
 Instructions:
 
 1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
-1. **Run** `gcloud functions deploy translate --runtime python310 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (or Python 3.7-3.9)
+1. **Run** `gcloud functions deploy translate --runtime python310 --trigger-http --allow-unauthenticated --entry-point translate` to deploy to Cloud Functions (or Python 3.7-3.9)
     - That command creates &amp; deploys a new HTTP-triggered Cloud Function (name must match what's in `main.py`)
     - You'll be prompted for the REGION if deploying a Cloud Function the first time.
     - Cloud Functions can be deployed to different regions within a project, but once the region has been set for a function, it cannot be changed.
