@@ -3,7 +3,15 @@
 
 ## Description
 
-This is the code repo for a set of codelab tutorials highlighting a ["nebulous" sample app](https://twitter.com/googledevs/status/1433113274984271875?utm_source=twitter&utm_medium=unpaidsoc&utm_campaign=CDR_wes_aap-serverless_mgrcrbdpk_sms_201031&utm_content=-) demonstrating how to access Google Cloud APIs from one of our serverless platforms. There are [Python](python) and [Node.js](nodejs) versions of this app available.
+This is the code repo for a set of codelab tutorials highlighting a "nebulous" sample app demonstrating how to access Google Cloud APIs from one of our serverless platforms. There are [Python](python) and [Node.js](nodejs) versions of this app available.
+
+### Related content
+
+- [Cloud serverless platforms intro video](https://youtu.be/gle26fT28Bw?list=PL2pQQBHvYcs0PEecTcLD9_VaLvuhK0_VQ?utm_source=youtube&utm_medium=unpaidsoc&utm_campaign=CDR_wes_aap-serverless_nebservconcept_neb_202007&utm_content=info_card)
+- [Nebulous serverless app deployments video](https://youtu.be/eTotLOVR7MQ?list=PL2pQQBHvYcs0PEecTcLD9_VaLvuhK0_VQ?utm_source=youtube&utm_medium=unpaidsoc&utm_campaign=CDR_wes_aap-serverless_nebservdeploy_neb_2021xx&utm_content=info_card)
+- [Calling Cloud APIs from serverless blog post](https://cloud.google.com/blog/topics/developers-practitioners/calling-google-apis-serverless-part-i-cloud-apis?utm_source=blog&utm_medium=partner&utm_campaign=CDR_wes_aap-serverless_nebservconcept_neb_202007)
+- Nebulous serverless app deployments blog post (_coming soon_)
+- Calling non-Cloud Google APIs from serverless blog post (_TBD_)
 
 
 ## Inspiration and implementation
