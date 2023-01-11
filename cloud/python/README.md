@@ -118,7 +118,8 @@ File | Description
 
 Instructions:
 
-1. **Edit** `app.yaml` (see above); optionally **delete** `lib` and `appengine_config.py` (unused)
+1. **Edit** `app.yaml` (see above)
+1. (optional) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Run** `gcloud app deploy` to deploy to Python 3 App Engine
     - You'll be prompted for the REGION if deploying to App Engine the first time.
     - App Engine apps are tied to one region, so it can't be changed once it's set, meaning you won't be prompted thereafter.
@@ -140,7 +141,7 @@ File | Description
 
 Instructions:
 
-1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
+1. (optional) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Run** `gcloud functions deploy translate --runtime python310 --trigger-http --allow-unauthenticated` to deploy to Cloud Functions (or Python 3.7-3.9)
     - That command creates &amp; deploys a new HTTP-triggered Cloud Function (name must match what's in `main.py`)
     - You'll be prompted for the REGION if deploying a Cloud Function the first time.
@@ -164,7 +165,7 @@ File | Description
 
 Instructions:
 
-1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
+1. (optional) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry) (must be enabled), and finally `docker run` to deploy the service, all in one convenient command.
     - You'll be prompted to provide a REGION unless you also add `--region REGION` on the cmd-line
@@ -194,7 +195,7 @@ File | Description
 
 Instructions:
 
-1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
+1. (optional) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Edit** `Dockerfile` (see above)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run
     - The above command wraps `docker build` and `docker push`, deploying the image to [Cloud Artifact Registry](https://cloud.google.com/artifact-registry) (must be enabled), and finally `docker run` to deploy the service, all in one convenient command.
@@ -224,7 +225,7 @@ File | Description
 
 Instructions:
 
-1. (optionally) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
+1. (optional) **Delete** `app.yaml`, `lib` and `appengine_config.py` (unused)
 1. **Delete** `Dockerfile` (or rename it)
     - There is no support for Python 2 with Cloud Buildpacks (2.x developers must use Docker)
 1. **Run** `gcloud run deploy translate --allow-unauthenticated --platform managed` to deploy to Cloud Run

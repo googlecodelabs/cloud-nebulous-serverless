@@ -56,6 +56,23 @@ Furthermore, deploying to GCP serverless platforms incur [minor build and storag
 More specific cost information for each sample is available in their respective README files.
 
 
+### Academic use
+
+#### Teaching and research grants
+
+If you are a faculty member or lecturer at a regionally-accredited, degree-granting, and not-for-profit higher ed institution in one of [75+ supported countries worldwide](https://support.google.com/google-cloud-higher-ed/answer/10723190) teaching a course where students are expected to code or use resources in the cloud, you may be eligible to grant your students (plus yourself and teaching assistants) free usage of Google Cloud. Explore faculty resources at <http://cloud.google.com/edu> to learn more about our _education (teaching and [initial] research) grants_. **@Students:** send your instructors there so they can get you access to Google Cloud.
+
+
+#### Cloud computing curriculum
+
+If you are an educator who wishes to add cloud computing to your curriculum or seek to enhance it with Google Cloud teaching materials, take a look at our [free 10-module, 40-hour complete course](https://cloud.google.com/edu/curriculum).
+
+
+#### Hands-on training for self-paced online tutorials
+
+For a hands-on learning experience on all aspects of Google Cloud, both students and faculty can get their hands on free _training credits_ for [Cloud Skills Boost hands-on labs powered by QwikLabs](https://cloudskillsboost.google). Apply for those credits at <http://cloud.google.com/edu> as well.
+
+
 ## Testing
 
 Each app has its own testing battery; refer to each sample's folder to learn about implemented tests.
